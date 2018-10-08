@@ -25,15 +25,15 @@ is held by Douglas J. Morgan.
 #include <SDL/SDL_opengl.h>
 #include <SDL/SDL_mixer.h>
 #else
-#include <SDL.h>
-#include <SDL_opengl.h>
-#include <SDL_mixer.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+#include <SDL2/SDL_mixer.h>
 #endif
 
 // Standard headers
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #ifdef LINUX
 #include <time.h>
 #define GetTickCount() time(NULL)

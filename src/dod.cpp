@@ -55,7 +55,9 @@ Parser		parser;
 void printvls();
 void printthem(int *, int, char *);
 
-int main(int argc, char * argv[])
+//SDL 2.0 change
+//int main(int argc, char * argv[])
+int CALLBACK WinMain ( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow )
 {
 	//printvls();
 	//exit(0);

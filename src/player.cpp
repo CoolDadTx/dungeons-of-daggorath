@@ -1659,10 +1659,14 @@ void Player::ShowTurn(dodBYTE A)
 					glClear(GL_COLOR_BUFFER_BIT);
 					glLoadIdentity();
 					viewer.drawVectorList(viewer.LINES);
+
 					viewer.drawVector((x*inc*dir)+offset,y0,(x*inc*dir)+offset,y1);
 					viewer.drawArea(&viewer.TXTSTS);
 					viewer.drawArea(&viewer.TXTPRI);
-					SDL_GL_SwapBuffers();
+
+                    //SDL 2.0 Replaced 
+                    //SDL_GL_SwapBuffers();
+                    oslink.SwapBuffers();					
 					redraw = false;
 				}
 			} while (scheduler.curTime < ticks1 + turnDelay);

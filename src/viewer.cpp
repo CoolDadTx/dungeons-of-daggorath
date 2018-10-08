@@ -354,7 +354,9 @@ void Viewer::setup_opengl()
 	glViewport(0, 0, oslink.width, oslink.height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(0, oslink.width, 0, oslink.height);
+    //SDL 2.0 Is this the correct replacement?
+	//gluOrtho2D(0, oslink.width, 0, oslink.height);
+    glOrtho(0, oslink.width, 0, oslink.height, 0, 0);
 	ClearColor = 1;
 }
 
@@ -403,7 +405,10 @@ void Viewer::draw_game()
 		glClearColor(bgColor[0], bgColor[1], bgColor[2], 0.0);
 		glLoadIdentity();
 		MAPPER();
-		SDL_GL_SwapBuffers();
+
+        //SDL 2.0 Replaced       
+		//SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 	}
 	else
 	{
@@ -439,7 +444,9 @@ void Viewer::draw_game()
 		// Draw Text Area
 		drawArea(&TXTPRI);
 
-		SDL_GL_SwapBuffers();
+        //SDL 2.0 Replaced       
+        //SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 	}
 	UPDATE = 0;
 }
@@ -505,7 +512,9 @@ bool Viewer::ShowFade(int fadeMode)
 		glColor3fv(fgColor);
 		glLoadIdentity();
 		drawVectorList(wiz);
-		SDL_GL_SwapBuffers();
+        //SDL 2.0 Replaced       
+        //SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 
 		ticks1 = SDL_GetTicks();
 		do
@@ -547,7 +556,9 @@ bool Viewer::ShowFade(int fadeMode)
 	glLoadIdentity();
 	drawVectorList(wiz);
 	drawArea(&TXTPRI);
-	SDL_GL_SwapBuffers();
+    //SDL 2.0 Replaced       
+    //SDL_GL_SwapBuffers();
+    oslink.SwapBuffers();
 
 	if (fadeMode < 3)
 	{
@@ -565,7 +576,9 @@ bool Viewer::ShowFade(int fadeMode)
 			glLoadIdentity();
 			drawVectorList(wiz);
 			drawArea(&TXTPRI);
-			SDL_GL_SwapBuffers();
+            //SDL 2.0 Replaced       
+            //SDL_GL_SwapBuffers();
+            oslink.SwapBuffers();
 
 			if (fadeMode != 2 && scheduler.keyCheck())
 			{
@@ -583,7 +596,9 @@ bool Viewer::ShowFade(int fadeMode)
 		glColor3fv(fgColor);
 		glLoadIdentity();
 		drawVectorList(wiz);
-		SDL_GL_SwapBuffers();
+        //SDL 2.0 Replaced       
+        //SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 
 		// do crash
 		Mix_PlayChannel(fadChannel, creature.kaboom, 0);
@@ -614,7 +629,9 @@ bool Viewer::ShowFade(int fadeMode)
 			glColor3fv(fgColor);
 			glLoadIdentity();
 			drawVectorList(wiz);
-			SDL_GL_SwapBuffers();
+            //SDL 2.0 Replaced       
+            //SDL_GL_SwapBuffers();
+            oslink.SwapBuffers();
 
 			ticks1 = SDL_GetTicks();
 			do
@@ -651,7 +668,9 @@ bool Viewer::ShowFade(int fadeMode)
 			glLoadIdentity();
 			drawVectorList(wiz);
 			drawArea(&TXTPRI);
-			SDL_GL_SwapBuffers();
+            //SDL 2.0 Replaced       
+            //SDL_GL_SwapBuffers();
+            oslink.SwapBuffers();
 		  }
 		clearArea(&TXTPRI);
 		while(SDL_PollEvent(&event)) ; // clear event buffer
@@ -685,7 +704,9 @@ bool Viewer::draw_fade()
 
 		glLoadIdentity();
 		drawVectorList(W1_VLA);
-		SDL_GL_SwapBuffers();
+        //SDL 2.0 Replaced       
+        //SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 		VCTFAD += fadeVal;
 		if ((VCTFAD & 0x80) != 0)
 		{
@@ -715,7 +736,9 @@ bool Viewer::draw_fade()
 		glLoadIdentity();
 		drawVectorList(W1_VLA);
 		drawArea(&TXTPRI);
-		SDL_GL_SwapBuffers();
+        //SDL 2.0 Replaced       
+        //SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 		delay2 = SDL_GetTicks();
 		if (delay2 > delay + midPause)
 		{
@@ -763,13 +786,17 @@ void Viewer::enough_fade()
 
 		glLoadIdentity();
 		drawVectorList(W1_VLA);
-		SDL_GL_SwapBuffers();
+        //SDL 2.0 Replaced       
+        //SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 		VCTFAD += fadeVal;
 		if ((VCTFAD & 0x80) != 0)
 		{
 			displayEnough();
 			drawArea(&TXTPRI);
-			SDL_GL_SwapBuffers();
+            //SDL 2.0 Replaced       
+            //SDL_GL_SwapBuffers();
+            oslink.SwapBuffers();
 
 			// do sound crash
 			Mix_HaltChannel(fadChannel);
@@ -798,7 +825,9 @@ void Viewer::enough_fade()
 		drawVectorList(W1_VLA);
 		VCTFAD += fadeVal;
 		drawArea(&TXTPRI);
-		SDL_GL_SwapBuffers();
+        //SDL 2.0 Replaced       
+        //SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 		delay2 = SDL_GetTicks();
 		if (delay2 > delay + midPause)
 		{
@@ -839,7 +868,9 @@ void Viewer::death_fade(int WIZ[])
 		glColor3fv(fgColor);
 		glLoadIdentity();
 		drawVectorList(WIZ);
-		SDL_GL_SwapBuffers();
+        //SDL 2.0 Replaced       
+        //SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 		VCTFAD += fadeVal;
 		if ((VCTFAD & 0x80) != 0)
 		{
@@ -848,7 +879,9 @@ void Viewer::death_fade(int WIZ[])
 			Mix_Volume(fadChannel, oslink.volumeLevel);
 			glLoadIdentity();
 			drawArea(&TXTPRI);
-			SDL_GL_SwapBuffers();
+            //SDL 2.0 Replaced       
+            //SDL_GL_SwapBuffers();
+            oslink.SwapBuffers();
 			Mix_PlayChannel(fadChannel, creature.kaboom, 0);
 			while (Mix_Playing(fadChannel) == 1)
 			{
@@ -867,7 +900,9 @@ void Viewer::death_fade(int WIZ[])
 		glLoadIdentity();
 		drawVectorList(WIZ);
 		drawArea(&TXTPRI);
-		SDL_GL_SwapBuffers();
+        //SDL 2.0 Replaced       
+        //SDL_GL_SwapBuffers();
+        oslink.SwapBuffers();
 	}
 }
 
@@ -2095,7 +2130,9 @@ void Viewer::drawMenu(menu mainMenu, int menu_id, int highlight)
    }
 
   // Update the screen
- SDL_GL_SwapBuffers();
+  //SDL 2.0 Replaced       
+  //SDL_GL_SwapBuffers();
+  oslink.SwapBuffers();
  }
 
 /****************************************************************
@@ -2145,7 +2182,9 @@ void Viewer::drawMenuList(int x, int y, char *title, char *list[], int listSize,
    }
 
   // Update the screen
- SDL_GL_SwapBuffers();
+  //SDL 2.0 Replaced       
+  //SDL_GL_SwapBuffers();
+  oslink.SwapBuffers();
  }
 
 
@@ -2186,7 +2225,9 @@ void Viewer::drawMenuScrollbar(char *title, int current)
   }
 
   // Update the screen
- SDL_GL_SwapBuffers();
+  //SDL 2.0 Replaced       
+  //SDL_GL_SwapBuffers();
+  oslink.SwapBuffers();
  }
 
 /****************************************************************
@@ -2206,7 +2247,9 @@ void Viewer::drawMenuStringTitle(char *title)
  drawString(0, 0, title, strlen(title));
 
   // Update the screen
- SDL_GL_SwapBuffers();
+  //SDL 2.0 Replaced       
+  //SDL_GL_SwapBuffers();
+  oslink.SwapBuffers();
  }
 
 /****************************************************************
@@ -2222,7 +2265,9 @@ void Viewer::drawMenuString(char *currentString)
  drawString(strlen(currentString), 2, "_", 1);
 
   // Update the screen
- SDL_GL_SwapBuffers();
+  //SDL 2.0 Replaced       
+  //SDL_GL_SwapBuffers();
+  oslink.SwapBuffers();
  }
 
 /****************************************************************
@@ -2255,5 +2300,7 @@ void Viewer::aboutBox(void)
  drawString(1,18, "MANY OTHERS NOT MENTIONED HERE!", 31);
 
   // Update the screen
- SDL_GL_SwapBuffers();
+  //SDL 2.0 Replaced       
+  //SDL_GL_SwapBuffers();
+  oslink.SwapBuffers();
  }

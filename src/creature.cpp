@@ -22,7 +22,7 @@ is held by Douglas J. Morgan.
 #include "viewer.h"
 #include "player.h"
 #include "oslink.h"
-#include "math.h"
+#include <cmath>
 #include "enhanced.h"
 
 extern OS_Link		oslink;

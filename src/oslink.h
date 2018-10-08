@@ -24,8 +24,8 @@ is held by Douglas J. Morgan.
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>
 #else
-#include <SDL.h>
-#include <SDL_opengl.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
 #endif
 
 #include "dod.h"
@@ -44,7 +44,7 @@ public:
 	void process_events();	// used mainly to retrieve keystrokes
 	bool main_menu();       // used to implement the meta-menu
 	bool saveOptFile(void);
-
+    
 	// Public Data Fields
 	int		width;	// actual screen width after video setup
 	int		height;	// same for height
@@ -66,9 +66,13 @@ public:
 	int		audio_channels;
 	int		audio_buffers;
 
+    //SDL 2.0 changes
+    void SwapBuffers();
+
 private:
 	// Internal Implementation
-	void handle_key_down(SDL_keysym * keysym);	// keyboard handler
+    //SDL 2.0 renamed SDL_Keysym to SDL_Keysym
+	void handle_key_down(SDL_Keysym * keysym);	// keyboard handler
 	bool menu_return(int, int, menu);		// Used by main menu
 	int  menu_list(int x, int y, char *title, char *list[], int listSize);
 	void menu_string(char *newString, char *title, int maxLength);
@@ -78,11 +82,19 @@ private:
 	void changeFullScreen(void);
 	void changeVideoRes(int newWidth);
 
-	// Data Fields
+    //SDL 2.0 changes
+    bool setResolution(int height, int width);
+
+	// Data Fields    
 	int  bpp;	    // bits per pixel
 	int  flags;	    // SDL flags
 	bool FullScreen;    // FullScreen
 	int  creatureRegen; // Creature Regen Speed
+
+    //SDL 2.0 changes
+    SDL_Window* screen;
+    SDL_Renderer* renderer;
+    const char* title = "Dungeons of Daggorath";
 };
 
 #endif // OS_LINK_HEADER

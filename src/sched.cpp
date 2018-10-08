@@ -425,24 +425,26 @@ bool Scheduler::keyCheck()
 	SDL_Event event;
 	while(SDL_PollEvent(&event))
 	{
-		switch(event.type)
+        switch(event.type)
 		{
-		case SDL_KEYDOWN:
+        case SDL_KEYDOWN:
 			return ( keyHandler(&event.key.keysym) );
 			break;
-		case SDL_QUIT:
+        case SDL_QUIT:
 			oslink.quitSDL(0); // eventually change to meta-menu
 			break;
-		case SDL_VIDEOEXPOSE:
-			SDL_GL_SwapBuffers();
-			break;
+
+        //SDL Cannot find SDL 2.0 replacement
+  //      case SDL_VIDEOEXPOSE:
+		//	//SDL_GL_SwapBuffers();
+		//	break;
 		}
 	}
 	return false;
 }
 
 // Used by wizard fade in/out function
-bool Scheduler::keyHandler(SDL_keysym * keysym)
+bool Scheduler::keyHandler(SDL_Keysym * keysym)
 {
 	bool rc;
 
@@ -469,22 +471,23 @@ bool Scheduler::EscCheck()
 	{
 		switch(event.type)
 		{
-		case SDL_KEYDOWN:
+        case SDL_KEYDOWN:
 			return ( keyHandler(&event.key.keysym) );
 			break;
 		case SDL_QUIT:
 			oslink.quitSDL(0); // eventually change to meta-menu
 			break;
-		case SDL_VIDEOEXPOSE:
+        //SDL 2.0 Cannot find replacement
+		/*case SDL_VIDEOEXPOSE:
 			SDL_GL_SwapBuffers();
-			break;
+			break;*/
 		}
 	}
 	return false;
 }
 
 // Used by wizard fade in/out function
-bool Scheduler::EscHandler(SDL_keysym * keysym)
+bool Scheduler::EscHandler(SDL_Keysym * keysym)
 {
 	bool rc;
 
