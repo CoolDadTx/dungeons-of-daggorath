@@ -115,8 +115,8 @@ void OS_Link::init()
     //SDL v2.0 - value change
     flags = SDL_WINDOW_OPENGL;
     screen = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, mode.w, mode.h, flags);
-    renderer = SDL_CreateRenderer(screen, 0, 0);
-    //changeVideoRes(width); // All changing video res code was moved here
+    renderer = SDL_CreateRenderer(screen, -1, SDL_RENDERER_ACCELERATED);
+    changeVideoRes(width); // All changing video res code was moved here
 
     //SDL v2.0 - obsolete
     //SDL_WM_SetCaption("Dungeons of Daggorath", "");
@@ -1167,7 +1167,7 @@ void OS_Link::loadDefaults(void)
     creature.creSpeedMul = 200;
     creature.UpdateCreSpeed();
     strcpy(savedDir, "saved");
-    FullScreen = true;
+    FullScreen = false;
     width = 1024;
     creatureRegen = 5;
     scheduler.updateCreatureRegen(creatureRegen);
