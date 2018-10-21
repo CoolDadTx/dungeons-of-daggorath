@@ -13,14 +13,23 @@ using System.Linq;
 namespace DoD.Blocks
 {
     //TODO: Should this be a struct?
-    // Object definition block
-    // Used for constructing specific objects.
+    /// <summary>Object definition block.</summary>
+    /// <remarks>
+    /// Used for constructing specific objects.
+    /// </remarks>
     public class Odb
     {
-        // Constructors
-        public Odb ( byte cls, byte rev, byte mgo, byte pho )
+        public Odb ( byte cls, byte rev, byte mgo, byte pho ) 
         {
             this.P_ODCLS = cls;
+            this.P_ODREV = rev;
+            this.P_ODMGO = mgo;
+            this.P_ODPHO = pho;
+        }
+
+        public Odb ( ObjectKind cls, byte rev, byte mgo, byte pho )
+        {
+            this.P_ODCLS = (byte)cls;
             this.P_ODREV = rev;
             this.P_ODMGO = mgo;
             this.P_ODPHO = pho;
@@ -34,7 +43,7 @@ namespace DoD.Blocks
             this.P_ODPHO = 0;
         }
 
-        // Fields
+        //TODO: Make properties
         public byte P_ODCLS;
         public byte P_ODREV;
         public byte P_ODMGO;

@@ -3,9 +3,16 @@
       <TargetFramework>net471</TargetFramework>
     <OutputType>Exe</OutputType>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <ApplicationIcon>Resources\wiz.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\wiz.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\wiz.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="OpenGL.Net" Version="0.7.1" />
-    <PackageReference Include="SDL" Version="1.2.15.16" />
+    <PackageReference Include="SDL2-CS-Rolling" Version="2018.10.1" />
   </ItemGroup>
 </Project>

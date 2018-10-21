@@ -17,12 +17,14 @@ namespace DoD
     // The new Task class for use in the rewritten
     // Scheduler algorithm.  Not all fields are being
     // used currently.  They may go away, if the current
-    // algorthim tests well, otherwise, they may be used
+    // algorithm tests well, otherwise, they may be used
     // for increasing the accuracy of the scheduler.
     public class GameTask
     {
         public int type; // One of the seven task types
         public int data; // Stores creatures ID
+
+        //TODO: Do these need to be uints?
         public uint frequency; // in milliseconds
         public uint prev_time; // previous execution timestamp
         public uint next_time; // next scheduled execution timestamp
@@ -38,9 +40,9 @@ namespace DoD
         {
             type = t;
             data = d;
-            frequency = f;
-            prev_time = p;
-            next_time = n;
+            frequency = (uint)f;
+            prev_time = (uint)p;
+            next_time = (uint)n;
             count = c;
         }
 

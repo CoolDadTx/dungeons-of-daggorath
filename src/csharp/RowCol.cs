@@ -12,35 +12,34 @@ using System.Linq;
 
 namespace DoD
 {
-    // This class stores 32x32 row/column values
+    /// <summary>This class stores 32x32 row/column values.</summary>
     public class RowCol
     {
-        // Constructors
         public RowCol ()
         {
-            this.row = 0;
-            this.col = 0;
-        }
-        public RowCol ( byte r, byte c )
-        {
-            this.row = r;
-            this.col = c;
-        }
-        public RowCol ( int idx )
-        {
-            this.row = idx / 32;
-            this.col = idx % 32;
         }
 
-        // Mutator
+        public RowCol ( byte r, byte c )
+        {
+            row = r;
+            col = c;
+        }
+
+        public RowCol ( int idx )
+        {
+            row = (byte)(idx / 32);
+            col = (byte)(idx % 32);
+        }
+
+        /// <summary>Mutator</summary>
         public void SetRC ( byte r, byte c )
         {
             row = r;
             col = c;
         }
 
-        // Fields
-        public byte row;
-        public byte col;
+        // TODO: Make properties
+        public byte row = 0;
+        public byte col = 0;
     }
 }

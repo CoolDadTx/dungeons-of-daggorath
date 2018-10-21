@@ -13,11 +13,12 @@ using System.Linq;
 namespace DoD.Blocks
 {
     //TODO: Should this be a struct?
-    // Object control block
-    // Hold the data for a particular object.
+    /// <summary>Object control block.</summary>
+    /// <remarks>    
+    /// Hold the data for a particular object.
+    /// </remarks>
     public class Ocb
     {
-        // Default constructor
         public Ocb ()
         {
             Clear();
@@ -40,7 +41,7 @@ namespace DoD.Blocks
             P_OCPHO = 0;
         }
 
-        // Fields
+        //TODO: Make properties
         public int P_OCPTR;
         public byte P_OCROW;
         public byte P_OCCOL;

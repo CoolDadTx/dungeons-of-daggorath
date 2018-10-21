@@ -8,21 +8,18 @@ is held by Douglas J. Morgan.
 (c) 1982, DynaMicro
 *****************************************/
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
-//C++ TO C# CONVERTER NOTE: Enums must be named in C#, so the following enum has been named AnonymousEnum4:
 namespace DoD
 {
-	public enum AnonymousEnum4
+    //C++ TO C# CONVERTER NOTE: Enums must be named in C#, so the following enum has been named AnonymousEnum4:
+    public enum AnonymousEnum4
 	{
 		OptVector = 1,
 		OptHires = 2,
 		OptStereo = 4,
 	}
 
-	//C++ TO C# CONVERTER NOTE: Enums must be named in C#, so the following enum has been named AnonymousEnum5:
-	public enum AnonymousEnum5
+	public enum CheatCodes
 	{
 		CHEATTORCH = 0x01,
 		CHEATRING = 0x02,

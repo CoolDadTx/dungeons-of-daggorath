@@ -7,14 +7,8 @@ The copyright for Dungeons of Daggorath
 is held by Douglas J. Morgan.
 (c) 1982, DynaMicro
 *****************************************/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace DoD
-{
-    //
-    // All primary objects are declared in global space
+/* 
+ * // All primary objects are declared in global space
     // to minimize dereferencing of pointers.  The main
     // function simply calls init on the oslink object
     // which contains all the SDL setup code.
@@ -38,7 +32,13 @@ namespace DoD
     // (i.e., native C types) will work correctly.
     //typedef unsigned char dodBYTE;
     //typedef unsigned short dodSHORT;
+*/
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace DoD
+{   
     internal static class DefineConstants
 	{
 		public const int NumMenu = 3;

@@ -12,10 +12,12 @@ using System.Linq;
 
 namespace DoD
 {
-    // This class is a port of Daggorath's custom RNG
+    //TODO: Replace with standard Random but perhaps provide option to use original RNG instead.
+    /// <summary>This class is a port of Daggorath's custom RNG.</summary>
     public class Rng
     {
-        // Constructor
+        #region Construction
+
         public Rng ()
         {
             carry = 0;
@@ -23,8 +25,11 @@ namespace DoD
             SEED[1] = 0;
             SEED[2] = 0;
         }
+        #endregion
 
-        // Accessors
+        //TODO: Remove this after port
+        public static readonly Rng Instance = new Rng();
+
         public byte Random ()
         {
             int x;
@@ -55,7 +60,6 @@ namespace DoD
             return SEED[idx];
         }
 
-        // Mutators
         public void SetSEED ( int idx, byte val )
         {
             SEED[idx] = val;
@@ -71,7 +75,8 @@ namespace DoD
         public byte[] SEED = new byte[3];
         public byte carry;
 
-        // Internal Implementation
+        #region Private Members
+
         private byte Lsl ( byte c )
         {
             carry = (((c & 128) == 128) ? 1 : 0);
@@ -93,5 +98,6 @@ namespace DoD
             carry = cry;
             return c;
         }
+        #endregion
     }
 }

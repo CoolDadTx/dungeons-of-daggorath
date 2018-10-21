@@ -12,29 +12,14 @@
 [System.Obsolete("Use standard C# features")]
 internal static class RandomNumbers
 {
-	private static System.Random r;
+    private static System.Random r = new System.Random();
 
-	public static int NextNumber()
-	{
-		if (r == null)
-			Seed();
+    public static byte NextByte () => (byte)r.Next(0, 255);
 
-		return r.Next();
-	}
+	public static int NextNumber() => r.Next();
 
-	public static int NextNumber(int ceiling)
-	{
-		if (r == null)
-			Seed();
-
-		return r.Next(ceiling);
-	}
-
-	public static void Seed()
-	{
-		r = new System.Random();
-	}
-
+	public static int NextNumber(int ceiling) => r.Next(ceiling);
+    
 	public static void Seed(int seed)
 	{
 		r = new System.Random(seed);

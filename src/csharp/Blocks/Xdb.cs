@@ -13,13 +13,13 @@ using System.Linq;
 namespace DoD.Blocks
 {
     //TODO: Should this be a struct?
-    // Extra definition block
-    // Holds extra data for torches, rings, and shields:
-    // torch timers, ring shot counters and incantation indices,
-    // and shield magical and physical defense values.
+    /// <summary>Extra definition block.</summary>
+    /// <remarks>
+    /// Holds extra data for torches, rings, and shields: torch timers, ring shot counters and incantation indices,
+    /// and shield magical and physical defense values.
+    /// </remarks>
     public class Xdb
     {
-        // Constructors
         public Xdb ( int idx, ushort x0, ushort x1, ushort x2 )
         {
             this.P_OXIDX = idx;
@@ -36,7 +36,7 @@ namespace DoD.Blocks
             this.P_OXXX2 = 0;
         }
 
-        // Fields
+        //TODO: Make properties
         public int P_OXIDX;
         public ushort P_OXXX0;
         public ushort P_OXXX1;

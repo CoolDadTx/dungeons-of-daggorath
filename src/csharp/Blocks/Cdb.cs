@@ -13,11 +13,12 @@ using System.Linq;
 namespace DoD.Blocks
 {
     //TODO: Should this be a struct?
-    // Creature definition block
-    // Holds the data for a creature type.
+    /// <summary>Creature definition block.</summary>
+    /// <remarks>    
+    /// Holds the data for a creature type.
+    /// </remarks>
     public class Cdb
     {
-        // Constructors
         public Cdb ( ushort pow, byte mgo, byte mgd, byte pho, byte phd, int tmv, int tat )
         {
             this.P_CDPOW = pow;
@@ -40,7 +41,7 @@ namespace DoD.Blocks
             this.P_CDTAT = 0;
         }
 
-        // Fields
+        //TODO: Make properties
         public ushort P_CDPOW;
         public byte P_CDMGO;
         public byte P_CDMGD;

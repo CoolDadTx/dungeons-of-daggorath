@@ -13,15 +13,15 @@ using System.Linq;
 namespace DoD.Blocks
 {
     //TODO: Should this be a struct?
-    // The original source has several structured blocks.
-    // They all have their size as the last field, which is
-    // probably unnecessary for us.  I've made them into
-    // classes with all public memebers, and some functions.
 
-    // Text Block
-    //
-    // This has been entirely modified from the original
-    // for use in the modern system.
+    /// <summary>Text Block.</summary>
+    /// <remarks>
+    /// This has been entirely modified from the original for use in the modern system.
+    /// <para />
+    /// The original source has several structured blocks.
+    /// They all have their size as the last field, which is probably unnecessary for us.  I've made them into
+    /// classes with all public members, and some functions.
+    /// </remarks>
     public class Txb
     {
         public Txb ()
@@ -36,7 +36,7 @@ namespace DoD.Blocks
             top = t;
         }
 
-        // Fields
+        //TODO: Make properties
         public string area;
         public int caret;
         public int len;

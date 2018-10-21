@@ -13,13 +13,14 @@ using System.Linq;
 namespace DoD.Blocks
 {
     //TODO: Should this be a struct?
-    // Attack Block
-    // Creatures and players use the same algorithm
-    // for attacking and for damage infliction.  These
-    // values are the common ones used.
+    /// <summary>Attack Block.</summary>
+    /// <remarks>    
+    /// Creatures and players use the same algorithm for attacking and for damage infliction.  These
+    /// values are the common ones used.
+    /// </remarks>
     public class Atb
     {
-        // Fields
+        //TODO: Make properties
         public ushort P_ATPOW;
         public byte P_ATMGO;
         public byte P_ATMGD;

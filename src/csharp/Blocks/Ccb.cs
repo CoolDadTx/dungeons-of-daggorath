@@ -13,11 +13,12 @@ using System.Linq;
 namespace DoD.Blocks
 {
     //TODO: Should this be a struct?
-    // Creature control block
-    // Holds all the data for a particular creature.
+    /// <summary>Creature control block.</summary>
+    /// <remarks>
+    /// Holds all the data for a particular creature.
+    /// </remarks>
     public class Ccb
-    {
-        // Constructor
+    {        
         public Ccb ()
         {
             Clear();
@@ -41,7 +42,7 @@ namespace DoD.Blocks
             P_CCCOL = 0;
         }
 
-        // Fields
+        //TODO: Make properties
         public ushort P_CCPOW;
         public byte P_CCMGO;
         public byte P_CCMGD;
