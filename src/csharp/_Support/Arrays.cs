@@ -4,25 +4,30 @@
 //
 //	This class provides the ability to initialize and delete array elements.
 //----------------------------------------------------------------------------------------
-[System.Obsolete("Use standard C# features")]
-internal static class Arrays
-{
-	public static T[] InitializeWithDefaultInstances<T>(int length) where T : new()
-	{
-		T[] array = new T[length];
-		for (int i = 0; i < length; i++)
-		{
-			array[i] = new T();
-		}
-		return array;
-	}
+using System;
 
-	public static void DeleteArray<T>(T[] array) where T: System.IDisposable
-	{
-		foreach (T element in array)
-		{
-			if (element != null)
-				element.Dispose();
-		}
-	}
+namespace DoD
+{
+    [Obsolete("Use standard array functionality")]
+    internal static class Arrays
+    {
+        public static T[] InitializeWithDefaultInstances<T> ( int length ) where T : new()
+        {
+            T[] array = new T[length];
+            for (int i = 0; i < length; i++)
+            {
+                array[i] = new T();
+            }
+            return array;
+        }
+
+        public static void DeleteArray<T> ( T[] array ) where T : System.IDisposable
+        {
+            foreach (T element in array)
+            {
+                if (element != null)
+                    element.Dispose();
+            }
+        }
+    }
 }

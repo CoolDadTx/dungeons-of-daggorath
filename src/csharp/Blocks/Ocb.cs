@@ -1,4 +1,11 @@
-﻿/****************************************
+﻿/*
+ * Copyright © Michael Taylor (P3Net)
+ * All Rights Reserved
+ * For changes from C++ to C# and .NET.
+ *
+ * http://www.michaeltaylorp3.net
+ */
+/****************************************
 Daggorath PC-Port Version 0.2.1
 Richard Hunerlach
 November 13, 2002
@@ -12,17 +19,21 @@ using System.Linq;
 
 namespace DoD.Blocks
 {
-    //TODO: Should this be a struct?
     /// <summary>Object control block.</summary>
-    /// <remarks>    
+    /// <remarks>
     /// Hold the data for a particular object.
     /// </remarks>
     public class Ocb
     {
+        #region Construction
+
+        /// <summary>Initializes an instance of the <see cref="Ocb"/> class.</summary>
         public Ocb ()
         {
+            //TODO: Not needed
             Clear();
         }
+        #endregion
 
         public void Clear ()
         {
@@ -41,19 +52,18 @@ namespace DoD.Blocks
             P_OCPHO = 0;
         }
 
-        //TODO: Make properties
-        public int P_OCPTR;
-        public byte P_OCROW;
-        public byte P_OCCOL;
-        public byte P_OCLVL;
-        public byte P_OCOWN;
-        public ushort P_OCXX0;
-        public ushort P_OCXX1;
-        public ushort P_OCXX2;
-        public byte obj_id;
-        public byte obj_type;
-        public byte obj_reveal_lvl;
-        public byte P_OCMGO;
-        public byte P_OCPHO;
+        public int P_OCPTR { get; set; }
+        public byte P_OCROW { get; set; }
+        public byte P_OCCOL { get; set; }
+        public byte P_OCLVL { get; set; }
+        public byte P_OCOWN { get; set; }
+        public ushort P_OCXX0 { get; set; }
+        public ushort P_OCXX1 { get; set; }
+        public ushort P_OCXX2 { get; set; }
+        public byte obj_id { get; set; }
+        public byte obj_type { get; set; }
+        public byte obj_reveal_lvl { get; set; }
+        public byte P_OCMGO { get; set; }
+        public byte P_OCPHO { get; set; }
     }
 }

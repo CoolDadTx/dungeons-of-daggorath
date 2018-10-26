@@ -1,4 +1,11 @@
-﻿/****************************************
+﻿/*
+ * Copyright © Michael Taylor (P3Net)
+ * All Rights Reserved
+ * For changes from C++ to C# and .NET.
+ *
+ * http://www.michaeltaylorp3.net
+ */
+/****************************************
 Daggorath PC-Port Version 0.2.1
 Richard Hunerlach
 November 13, 2002
@@ -7,17 +14,15 @@ The copyright for Dungeons of Daggorath
 is held by Douglas J. Morgan.
 (c) 1982, DynaMicro
 *****************************************/
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using DoD.Graphics;
+
 namespace DoD
 {
-    //
-    // This class manages the maze data, and includes
-    // methods related to row/column calculations.
-    public class Dungeon
+	public class Dungeon
 	{
         #region Construction
 
@@ -34,15 +39,15 @@ namespace DoD
             //MSKTAB[2] = 0x30;
             //MSKTAB[3] = 0xC0;
 
-            //DORTAB[0] = AnonymousEnum3.HfDor;
-            //DORTAB[1] = AnonymousEnum3.HfDor << 2;
-            //DORTAB[2] = AnonymousEnum3.HfDor << 4;
-            //DORTAB[3] = AnonymousEnum3.HfDor << 6;
+            //DORTAB[0] = (int)AnonymousEnum.HfDor;
+            //DORTAB[1] = (AnonymousEnum.HfDor << 2);
+            //DORTAB[2] = (AnonymousEnum.HfDor << 4);
+            //DORTAB[3] = (AnonymousEnum.HfDor << 6);
 
-            //SDRTAB[0] = AnonymousEnum3.HfSdr;
-            //SDRTAB[1] = AnonymousEnum3.HfSdr << 2;
-            //SDRTAB[2] = AnonymousEnum3.HfSdr << 4;
-            //SDRTAB[3] = AnonymousEnum3.HfSdr << 6;
+            //SDRTAB[0] = (int)AnonymousEnum.HfSdr;
+            //SDRTAB[1] = (AnonymousEnum.HfSdr << 2);
+            //SDRTAB[2] = (AnonymousEnum.HfSdr << 4);
+            //SDRTAB[3] = (AnonymousEnum.HfSdr << 6);
 
             //STPTAB[0] = -1;
             //STPTAB[1] = 0;
@@ -76,10 +81,10 @@ namespace DoD
 			//int row;
 			//int x;
 			//byte val;
-			//int n;
-			//int e;
-			//int s;
-			//int w;
+			//byte n;
+			//byte e;
+			//byte s;
+			//byte w;
 			//for (idx = 0; idx < 1024; idx += 32)
 			//{
 			//	for (x = 0; x < 3; ++x)
@@ -185,7 +190,8 @@ namespace DoD
 		}
 
         /// <summary>Override original vertical feature table values with new ones.</summary>
-        /// <remarks>Will override other level's col & row when during map generation.
+        /// <remarks>        
+        /// Will override other level's col & row when during map generation.
         /// </remarks>
         public void SetVFTTABRandomMap()
 		{
@@ -214,14 +220,14 @@ namespace DoD
         public void SetLEVTABRandomMap()
 		{
             throw new NotImplementedException();
-   //         RandomNumbers.Seed(GetTickCount());
-			//LEVTAB[0] = RandomNumbers.NextByte();
-			//LEVTAB[1] = RandomNumbers.NextByte();
-			//LEVTAB[2] = RandomNumbers.NextByte();
-			//LEVTAB[3] = RandomNumbers.NextByte();
-			//LEVTAB[4] = RandomNumbers.NextByte();
-			//LEVTAB[5] = RandomNumbers.NextByte();
-			//LEVTAB[6] = RandomNumbers.NextByte();
+   //         RandomNumbers.Seed(time(null));
+			//LEVTAB[0] = RandomNumbers.NextNumber() & 255;
+			//LEVTAB[1] = RandomNumbers.NextNumber() & 255;
+			//LEVTAB[2] = RandomNumbers.NextNumber() & 255;
+			//LEVTAB[3] = RandomNumbers.NextNumber() & 255;
+			//LEVTAB[4] = RandomNumbers.NextNumber() & 255;
+			//LEVTAB[5] = RandomNumbers.NextNumber() & 255;
+			//LEVTAB[6] = RandomNumbers.NextNumber() & 255;
 		}
 
         /// <summary>It builds the maze.</summary>
@@ -241,8 +247,8 @@ namespace DoD
 	//		byte b_col;
 	//		byte DIR;
 	//		byte DST;
-	//		var DROW = new RowCol();
-	//		var ROW = new RowCol();
+	//		RowCol DROW = new RowCol();
+	//		RowCol ROW = new RowCol();
 	//		int spin;
 
 	//		/* Phase 1: Create Maze */
@@ -255,8 +261,7 @@ namespace DoD
 	//		cell_ctr = 500; // Room Counter
 
 	//		/* Set Starting Room */
-	//		if (!game.RandomMaze
-	//			|| game.IsDemo)
+	//		if (!game.RandomMaze || game.IsDemo)
 	//		{ //Is this an original game?  Yes:
 	//			a_col = (rng.RANDOM() & 31);
 	//			a_row = (rng.RANDOM() & 31);
@@ -286,9 +291,7 @@ namespace DoD
 	//					break;
 	//			}
 
-	//			if (player.PROW == 0x10
-	//				&& player.PCOL == 0x0B
-	//				&& game.LEVEL == 0)
+	//			if (player.PROW == 0x10 && player.PCOL == 0x0B && game.LEVEL == 0)
 	//			{ //Are we starting a new game?
 	//				player.PROW = a_row;
 	//				player.PCOL = a_col;
@@ -309,6 +312,7 @@ namespace DoD
 	//			MAZLND[maz_idx] = 0;
 	//			--cell_ctr;
 	//		} //Is this an original game?
+
 
 	//		while (cell_ctr > 0)
 	//		{
@@ -335,10 +339,7 @@ namespace DoD
 	////C++ TO C# CONVERTER TODO TASK: The following line was determined to contain a copy constructor call - this should be verified and a copy constructor should be created:
 	////ORIGINAL LINE: FRIEND(ROW);
 	//				Friend(new RowCol(ROW));
-	//				if (NEIBOR[3] + NEIBOR[0] + NEIBOR[1] == 0
-	//					|| NEIBOR[1] + NEIBOR[2] + NEIBOR[5] == 0
-	//					|| NEIBOR[5] + NEIBOR[8] + NEIBOR[7] == 0
-	//					|| NEIBOR[7] + NEIBOR[6] + NEIBOR[3] == 0)
+	//				if (NEIBOR[3] + NEIBOR[0] + NEIBOR[1] == 0 || NEIBOR[1] + NEIBOR[2] + NEIBOR[5] == 0 || NEIBOR[5] + NEIBOR[8] + NEIBOR[7] == 0 || NEIBOR[7] + NEIBOR[6] + NEIBOR[3] == 0)
 	//				{
 	//					RndDstDir(ref DIR, ref DST);
 	//					continue;
@@ -376,13 +377,13 @@ namespace DoD
 	////ORIGINAL LINE: FRIEND(DROW);
 	//					Friend(new RowCol(DROW));
 	//					if (NEIBOR[1] == 0xFF)
-	//						MAZLND[maz_idx] |= AnonymousEnum3.NWALL;
+	//						MAZLND[maz_idx] |= AnonymousEnum.NWall;
 	//					if (NEIBOR[3] == 0xFF)
-	//						MAZLND[maz_idx] |= AnonymousEnum3.WWALL;
+	//						MAZLND[maz_idx] |= AnonymousEnum.WWall;
 	//					if (NEIBOR[5] == 0xFF)
-	//						MAZLND[maz_idx] |= AnonymousEnum3.EWALL;
+	//						MAZLND[maz_idx] |= AnonymousEnum.EWall;
 	//					if (NEIBOR[7] == 0xFF)
-	//						MAZLND[maz_idx] |= AnonymousEnum3.SWALL;
+	//						MAZLND[maz_idx] |= AnonymousEnum.SWall;
 	//				}
 	//			}
 	//		}
@@ -396,9 +397,7 @@ namespace DoD
 	//			Makdor(this.SDRTAB);
 
 	//		/* Phase 4: Create vertical feature */
-	//		if (game.RandomMaze
-	//			&& !game.IsDemo
-	//			&& (game.LEVEL == 0 || game.LEVEL == 1 || game.LEVEL == 3))
+	//		if (game.RandomMaze && !game.IsDemo && (game.LEVEL == 0 || game.LEVEL == 1 || game.LEVEL == 3))
 	//		{
 	//			do
 	//			{
@@ -413,24 +412,21 @@ namespace DoD
 	//			switch (game.LEVEL)
 	//			{
 	//				case 0:
-	//					if (VFTTAB[5] == 0
-	//						&& VFTTAB[6] == 0)
+	//					if (VFTTAB[5] == 0 && VFTTAB[6] == 0)
 	//					{
 	//						VFTTAB[5] = a_row;
 	//						VFTTAB[6] = a_col;
 	//					}
 	//					break;
 	//				case 1:
-	//					if (VFTTAB[9] == 0
-	//						&& VFTTAB[10] == 0)
+	//					if (VFTTAB[9] == 0 && VFTTAB[10] == 0)
 	//					{
 	//						VFTTAB[9] = a_row;
 	//						VFTTAB[10] = a_col;
 	//					}
 	//					break;
 	//				default:
-	//					if (VFTTAB[14] == 0
-	//						&& VFTTAB[15] == 0)
+	//					if (VFTTAB[14] == 0 && VFTTAB[15] == 0)
 	//					{
 	//						VFTTAB[14] = a_row;
 	//						VFTTAB[15] = a_col;
@@ -438,7 +434,7 @@ namespace DoD
 	//					break;
 	//			}
 	//		}
-                       
+
 	//		// Spin the RNG
 	//		if (scheduler.curTime == 0)
 	//		{
@@ -472,7 +468,6 @@ namespace DoD
 			//	--lvl;
 			//} while (lvl != 0xFF);
 		}
-
 		public int Rc2idx(byte R, byte C)
 		{
             throw new NotImplementedException();
@@ -496,7 +491,7 @@ namespace DoD
 
         /// <summary>Checks if a hole/ladder is in cell.</summary>
         /// <remarks>
-        /// It has to check above and below, since each vertical feature is stored only once in the VFT
+        /// It has to check above and below, since each vertical feature is stored only once in the VFT.
         /// </remarks>
         public byte Vfind(RowCol rc)
 		{
@@ -528,34 +523,33 @@ namespace DoD
 			//	return false;
 		}
 
-		//TODO: Make properties
-		public byte[] MAZLND = new byte[1024]; // The Maze
-		public byte[] NEIBOR = new byte[9]; // The cells around the player
+		public byte[] MAZLND {get; set; } = new byte[1024]; // The Maze
+		public byte[] NEIBOR {get; set; } = new byte[9]; // The cells around the player
 									// Also used to store the walls/doors
 									// of a given cell (for the 3D-Viewer)
-		public byte[] LEVTAB = new byte[7]; // The RNG seeds
-		public RowCol DROW = new RowCol();
-		public int[] STPTAB = new int[8];
-		public sbyte[] VFTTAB = new sbyte[42];
-		public int VFTPTR;
-        
-		//public enum AnonymousEnum3
-        public static class AnonymousEnum3
-        {
-			public const int NWALL = 0x03;
-			public const int EWALL = 0x0c;
-			public const int SWALL = 0x30;
-            public const int WWALL = 0xc0;
-			public const int HfPas = 0;
-			public const int HfDor = 1;
-			public const int HfSdr = 2;
-            public const int HfWal = 3;
+		public byte[] LEVTAB {get; set;} = new byte[7]; // The RNG seeds
+		public RowCol DROW {get; set;} = new RowCol();
+		public int[] STPTAB {get; set;} = new int[8];
+		public byte[] VFTTAB {get; set;} = new byte[42];
+		public int VFTPTR {get; set;}
 
-			public const int VfHoleUp = 0;
-			public const int VfLadderUp = 1;
-			public const int VfHoleDown = 2;
-			public const int VfLadderDown = 3;
-			public const int VfNull = 255;
+	    //C++ TO C# CONVERTER NOTE: Enums must be named in C#, so the following enum has been named AnonymousEnum3:
+		public enum AnonymousEnum3
+		{
+			NWALL = 0x03,
+			EWALL = 0x0c,
+			SWALL = 0x30,
+			WWALL = 0xc0,
+			HfPas = 0,
+			HfDor = 1,
+			HfSdr = 2,
+			HfWal = 3,
+
+			VfHoleUp = 0,
+			VfLadderUp = 1,
+			VfHoleDown = 2,
+			VfLadderDown = 3,
+			VfNull = 255,
 		}
 
         #region Private Members
@@ -626,13 +620,15 @@ namespace DoD
 			//}
 		}
 
+		// Inline Definitions
 		private void RndDstDir(ref byte DIR, ref byte DST)
 		{
             throw new NotImplementedException();
-            //DIR = (rng.RANDOM() & 3);
+   //         DIR = (rng.RANDOM() & 3);
 			//DST = (rng.RANDOM() & 7) + 1;
 		}
 
+		// Used by VFIND
 		private bool VFINDsub(ref byte a, ref int u, RowCol rc)
 		{
             throw new NotImplementedException();
@@ -649,14 +645,13 @@ namespace DoD
 			//} while (!((r == rc.row) && (c == rc.col)));
 			//return true;
 		}
-        		
+
 		private byte[] MSKTAB = new byte[4];
 		private byte[] DORTAB = new byte[4];
 		private byte[] SDRTAB = new byte[4];
-        		
+
 		private string NS = new string(new char[4]);
 		private string EW = new string(new char[4]);
-
         #endregion
     }
 }

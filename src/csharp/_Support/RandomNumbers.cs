@@ -9,19 +9,39 @@
 //	'randomize' converts to the parameterless overload of Seed
 //	'srand' converts to the single-parameter overload of Seed
 //----------------------------------------------------------------------------------------
-[System.Obsolete("Use standard C# features")]
-internal static class RandomNumbers
+using System;
+
+namespace DoD
 {
-    private static System.Random r = new System.Random();
+    [Obsolete("Use standard Random class")]
+    internal static class RandomNumbers
+    {
+        private static System.Random r;
 
-    public static byte NextByte () => (byte)r.Next(0, 255);
+        public static int NextNumber ()
+        {
+            if (r == null)
+                Seed();
 
-	public static int NextNumber() => r.Next();
+            return r.Next();
+        }
 
-	public static int NextNumber(int ceiling) => r.Next(ceiling);
-    
-	public static void Seed(int seed)
-	{
-		r = new System.Random(seed);
-	}
+        public static int NextNumber ( int ceiling )
+        {
+            if (r == null)
+                Seed();
+
+            return r.Next(ceiling);
+        }
+
+        public static void Seed ()
+        {
+            r = new System.Random();
+        }
+
+        public static void Seed ( int seed )
+        {
+            r = new System.Random(seed);
+        }
+    }
 }

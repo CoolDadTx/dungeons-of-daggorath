@@ -1,4 +1,11 @@
-﻿/****************************************
+﻿/*
+ * Copyright © Michael Taylor (P3Net)
+ * All Rights Reserved
+ * For changes from C++ to C# and .NET.
+ *
+ * http://www.michaeltaylorp3.net
+ */
+/****************************************
 Daggorath PC-Port Version 0.2.1
 Richard Hunerlach
 November 13, 2002
@@ -12,22 +19,20 @@ using System.Linq;
 
 namespace DoD.Blocks
 {
-    //TODO: Should this be a struct?
     /// <summary>Attack Block.</summary>
-    /// <remarks>    
-    /// Creatures and players use the same algorithm for attacking and for damage infliction.  These
+    /// <remarks>
+    /// Creatures and players use the same algorithm for attacking and for damage infliction. These
     /// values are the common ones used.
     /// </remarks>
     public class Atb
     {
-        //TODO: Make properties
-        public ushort P_ATPOW;
-        public byte P_ATMGO;
-        public byte P_ATMGD;
-        public byte P_ATPHO;
-        public byte P_ATPHD;
-        public ushort P_ATXX1;
-        public ushort P_ATXX2;
-        public ushort P_ATDAM;
+        public ushort P_ATPOW { get; set; }
+        public byte P_ATMGO { get; set; }
+        public byte P_ATMGD { get; set; }
+        public byte P_ATPHO { get; set; }
+        public byte P_ATPHD { get; set; }
+        public ushort P_ATXX1 { get; set; }
+        public ushort P_ATXX2 { get; set; }
+        public ushort P_ATDAM { get; set; }
     }
 }

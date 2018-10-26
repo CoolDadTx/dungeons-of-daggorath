@@ -1,4 +1,11 @@
-﻿/****************************************
+﻿/*
+ * Copyright © Michael Taylor (P3Net)
+ * All Rights Reserved
+ * For changes from C++ to C# and .NET.
+ *
+ * http://www.michaeltaylorp3.net
+ */
+/****************************************
 Daggorath PC-Port Version 0.2.1
 Richard Hunerlach
 November 13, 2002
@@ -8,45 +15,35 @@ is held by Douglas J. Morgan.
 (c) 1982, DynaMicro
 *****************************************/
 using System;
-using System.Linq;
 
 namespace DoD.Blocks
 {
-    //TODO: Should this be a struct?
     /// <summary>Object definition block.</summary>
     /// <remarks>
     /// Used for constructing specific objects.
     /// </remarks>
     public class Odb
     {
-        public Odb ( byte cls, byte rev, byte mgo, byte pho ) 
-        {
-            this.P_ODCLS = cls;
-            this.P_ODREV = rev;
-            this.P_ODMGO = mgo;
-            this.P_ODPHO = pho;
-        }
+        #region Construction
 
-        public Odb ( ObjectKind cls, byte rev, byte mgo, byte pho )
-        {
-            this.P_ODCLS = (byte)cls;
-            this.P_ODREV = rev;
-            this.P_ODMGO = mgo;
-            this.P_ODPHO = pho;
-        }
-
+        /// <summary>Initializes an instance of the <see cref="Odb"/> class.</summary>
         public Odb ()
         {
-            this.P_ODCLS = 0;
-            this.P_ODREV = 0;
-            this.P_ODMGO = 0;
-            this.P_ODPHO = 0;
         }
 
-        //TODO: Make properties
-        public byte P_ODCLS;
-        public byte P_ODREV;
-        public byte P_ODMGO;
-        public byte P_ODPHO;
+        /// <summary>Initializes an instance of the <see cref="Odb"/> class.</summary>
+        public Odb ( byte cls, byte rev, byte mgo, byte pho )
+        {
+            P_ODCLS = cls;
+            P_ODREV = rev;
+            P_ODMGO = mgo;
+            P_ODPHO = pho;
+        }
+        #endregion
+
+        public byte P_ODCLS { get; set; }
+        public byte P_ODREV { get; set; }
+        public byte P_ODMGO { get; set; }
+        public byte P_ODPHO { get; set; }
     }
 }

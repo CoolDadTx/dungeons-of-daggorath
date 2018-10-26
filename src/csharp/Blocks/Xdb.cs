@@ -1,4 +1,11 @@
-﻿/****************************************
+﻿/*
+ * Copyright © Michael Taylor (P3Net)
+ * All Rights Reserved
+ * For changes from C++ to C# and .NET.
+ *
+ * http://www.michaeltaylorp3.net
+ */
+/****************************************
 Daggorath PC-Port Version 0.2.1
 Richard Hunerlach
 November 13, 2002
@@ -12,7 +19,6 @@ using System.Linq;
 
 namespace DoD.Blocks
 {
-    //TODO: Should this be a struct?
     /// <summary>Extra definition block.</summary>
     /// <remarks>
     /// Holds extra data for torches, rings, and shields: torch timers, ring shot counters and incantation indices,
@@ -20,26 +26,31 @@ namespace DoD.Blocks
     /// </remarks>
     public class Xdb
     {
+        #region Construction
+
+        /// <summary>Initializes an instance of the <see cref="Xdb"/> class.</summary>
+		public Xdb ()
+        {
+            //TODO: Not needed
+            P_OXIDX = -1;
+            P_OXXX0 = 0;
+            P_OXXX1 = 0;
+            P_OXXX2 = 0;
+        }
+
+        /// <summary>Initializes an instance of the <see cref="Xdb"/> class.</summary>
         public Xdb ( int idx, ushort x0, ushort x1, ushort x2 )
         {
-            this.P_OXIDX = idx;
-            this.P_OXXX0 = x0;
-            this.P_OXXX1 = x1;
-            this.P_OXXX2 = x2;
+            P_OXIDX = idx;
+            P_OXXX0 = x0;
+            P_OXXX1 = x1;
+            P_OXXX2 = x2;
         }
+        #endregion
 
-        public Xdb ()
-        {
-            this.P_OXIDX = -1;
-            this.P_OXXX0 = 0;
-            this.P_OXXX1 = 0;
-            this.P_OXXX2 = 0;
-        }
-
-        //TODO: Make properties
-        public int P_OXIDX;
-        public ushort P_OXXX0;
-        public ushort P_OXXX1;
-        public ushort P_OXXX2;
+        public int P_OXIDX { get; set; }
+        public ushort P_OXXX0 { get; set; }
+        public ushort P_OXXX1 { get; set; }
+        public ushort P_OXXX2 { get; set; }
     }
 }

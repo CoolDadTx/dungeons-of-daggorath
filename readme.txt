@@ -1,3 +1,12 @@
+Copyright © Michael Taylor (P3Net)
+All Rights Reserved
+http://www.michaeltaylorp3.net
+
+Changes made to port from C++ to C# and .NET.
+Used C++ to C# Converter from Tangible Software.
+
+===========================
+
 Daggorath PC-Port
 Version 0.3
 By Richard Hunerlach

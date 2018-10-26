@@ -1,4 +1,11 @@
-﻿/****************************************
+﻿/*
+ * Copyright © Michael Taylor (P3Net)
+ * All Rights Reserved
+ * For changes from C++ to C# and .NET.
+ *
+ * http://www.michaeltaylorp3.net
+ */
+/****************************************
 Daggorath PC-Port Version 0.2.1
 Richard Hunerlach
 November 13, 2002
@@ -11,132 +18,135 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DoD.Blocks;
-using SDL2;
+using DoD.Sound;
 
 namespace DoD
 {
-    /// <summary>Implementation of Player class.</summary>
+    /// <summary>This class manages the Player data.</summary>
     public class Player
 	{
         #region Construction
 
-        public Player()
+        /// <summary>Initializes an instance of the <see cref="Player"/> class.</summary>
+        public Player ()
 		{
             throw new NotImplementedException();
-   //         this.PPOW = PLRBLK.P_ATPOW;
-			//this.PMGO = PLRBLK.P_ATMGO;
-			//this.PMGD = PLRBLK.P_ATMGD;
-			//this.PPHO = PLRBLK.P_ATPHO;
-			//this.PPHD = PLRBLK.P_ATPHD;
-			//this.PDAM = PLRBLK.P_ATDAM;
-			//this.turnDelay = 20;
-			//this.moveDelay = 25;
-			//this.wizDelay = 500;
+			//PPOW = PLRBLK.P_ATPOW;
+			//PMGO = PLRBLK.P_ATMGO;
+			//PMGD = PLRBLK.P_ATMGD;
+			//PPHO = PLRBLK.P_ATPHO;
+			//PPHD = PLRBLK.P_ATPHD;
+			//PDAM = PLRBLK.P_ATDAM;
+			//turnDelay = 20;
+			//moveDelay = 25;
+			//wizDelay = 500;
 			//Reset();
 		}
         #endregion
-        
-        /// <summary>It retrieves keyboard input, or commands from the demo data.</summary>
+                
+        /// <summary>This method gets called from the scheduler as often as possible.</summary>
         /// <remarks>
-        /// This method gets called from the scheduler as often as possible.  
+        /// It retrieves keyboard input, or commands from the demo data.
         /// </remarks>
-        public int Player()
+        //TODO: Renamed from Player
+        public int CheckPlayer()
 		{
             throw new NotImplementedException();
- //           int tokCnt;
-	//		int tokCtr;
-	//		byte[] objstr = new byte[10];
+			//int tokCnt;
+			//int tokCtr;
+			//byte[] objstr = new byte[10];
 
-	////C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to pointers to value types:
-	////ORIGINAL LINE: byte * X, * U;
-	//		byte X;
-	////C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to pointers to value types:
-	////ORIGINAL LINE: byte * U;
-	//		byte U;
-	//		int Xup;
+	  //      //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to pointers to value types:
+	  //      //ORIGINAL LINE: byte * X, * U;
+			//byte X;
+	
+   //         //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to pointers to value types:
+	  //      //ORIGINAL LINE: byte * U;
+			//byte U;
+			//int Xup;
 
-	//		// Update Task's next_time
-	//		scheduler.TCBLND[(int)TaskIds.TidPlayer].next_time = scheduler.curTime + scheduler.TCBLND[(int)TaskIds.TidPlayer].frequency;
+			//// Update Task's next_time
+			//scheduler.TCBLND[(int)Scheduler.AnonymousEnum2.TidPlayer].next_time = scheduler.curTime + scheduler.TCBLND[(int)Scheduler.AnonymousEnum2.TidPlayer].frequency;
 
-	//		byte c;
-	//		if (game.AUTFLG == 0)
-	//		{
-	//			// Process Keyboard Buffer
-	//			do
-	//			{
-	//				c = parser.KBDGET();
-	//				if (c == 0)
-	//					return 0;
-	//				if (FAINT != 0)
-	//				{
-	//					while (parser.KBDGET() != 0)
-	//						; // loop !!!
-	//					return 0;
-	//				}
+			//byte c;
+			//if (game.AUTFLG == 0)
+			//{
+			//	// Process Keyboard Buffer
+			//	do
+			//	{
+			//		c = parser.KBDGET();
+			//		if (c == 0)
+			//			return 0;
+			//		if (FAINT != 0)
+			//		{
+			//			while (parser.KBDGET() != 0)
+			//				; // loop !!!
+			//			return 0;
+			//		}
 
-	//				// Convert from ASCII to Internal Codes
-	//				if (c >= (byte)'A'
-	//					&& c <= (byte)'Z')
-	//					c &= 0x1F;
-	//				else if (c == parser.C_BS)
-	//					c = parser.I_BS;
-	//				else if (c == parser.C_CR)
-	//					c = parser.I_CR;
-	//				else
-	//					c = parser.I_SP;
+			//		// Convert from ASCII to Internal Codes
+			//		if (c >= (byte)'A' && c <= (byte)'Z')
+			//			c &= 0x1F;
+			//		else if (c == parser.C_BS)
+			//			c = parser.I_BS;
+			//		else if (c == parser.C_CR)
+			//			c = parser.I_CR;
+			//		else
+			//			c = parser.I_SP;
 
-	//				if (!Human(c))
-	//					return -1;
-	//			} while (true);
-	//		} else
-	//		{
-	//			// Process Autoplay Commands
-	//			tokCnt = game.DEMO_CMDS[game.DEMOPTR++];
-	//			if (tokCnt == 0)
-	//			{
-	//				game.WAIT();
-	//				game.WAIT();
-	//				game.hasWon = true;
-	//				game.demoRestart = true;
-	//				return 0;
-	//			}
+			//		if (!Human(c))
+			//			return -1;
+			//	} while (true);
+			//} else
+			//{
+			//	// Process Autoplay Commands
+			//	tokCnt = game.DEMO_CMDS[game.DEMOPTR++];
+			//	if (tokCnt == 0)
+			//	{
+			//		game.WAIT();
+			//		game.WAIT();
+			//		game.hasWon = true;
+			//		game.demoRestart = true;
+			//		return 0;
+			//	}
 
-	//			// Feed next autoplay command to HUMAN
-	//			tokCtr = 1;
+			//	// Feed next autoplay command to HUMAN
+			//	tokCtr = 1;
 
-	//			do
-	//			{
-	//				if (tokCtr == 1)
-	//					X = parser.CMDTAB[game.DEMO_CMDS[game.DEMOPTR]];
-	//				else if (tokCtr == 2)
-	//					X = parser.DIRTAB[game.DEMO_CMDS[game.DEMOPTR]];
-	//				else
-	//					X = @object.GENTAB[game.DEMO_CMDS[game.DEMOPTR]];
-	//				++game.DEMOPTR;
-	//				U = objstr[1];
-	//				parser.EXPAND(X, Xup, U);
-	//				++U;
-	//				game.WAIT();
-	//				do
-	//				{
-	//					Human(U);
-	//					++U;
-	//				} while (U != 0xFF);
-	//				Human(parser.I_SP);
-	//				++tokCtr;
-	//			} while (tokCtr <= tokCnt);
-	//			--viewer.UPDATE;
-	//			viewer.draw_game();
-	//			Human(parser.I_CR);
-	//		}
+			//	do
+			//	{
+			//		if (tokCtr == 1)
+			//			X = parser.CMDTAB[game.DEMO_CMDS[game.DEMOPTR]];
+			//		else if (tokCtr == 2)
+			//			X = parser.DIRTAB[game.DEMO_CMDS[game.DEMOPTR]];
+			//		else
+			//			X = @object.GENTAB[game.DEMO_CMDS[game.DEMOPTR]];
+			//		++game.DEMOPTR;
+			//		U = objstr[1];
+			//		parser.EXPAND(X, Xup, U);
+			//		++U;
+			//		game.WAIT();
+			//		do
+			//		{
+			//			Human(U);
+			//			++U;
+			//		} while (U != 0xFF);
+			//		Human(parser.I_SP);
+			//		++tokCtr;
+			//	} while (tokCtr <= tokCnt);
+			//	--viewer.UPDATE;
+			//	viewer.draw_game();
+			//	Human(parser.I_CR);
+			//}
 
-	//		return 0;
+			//return 0;
 		}
 
 		public bool Human(byte c)
 		{
             throw new NotImplementedException();
-  //          int res;
+
+		//	int res;
 		//	byte A;
 		//	byte B;
 
@@ -218,8 +228,7 @@ namespace DoD
 		//		if (res == -1)
 		//			parser.CMDERR();
 
-		//		if ((HEARTF != 0)
-		//			&& (FAINT == 0))
+		//		if ((HEARTF != 0) && (FAINT == 0))
 		//			viewer.PROMPT();
 
 		//		parser.LINPTR = 0;
@@ -242,15 +251,15 @@ namespace DoD
 		//		goto carriage_return;
 		//	return true;
 		}
-        
-        /// <summary>It performs damage recovery, indicated by slowing the heartbeat.</summary>
+
+        /// <summary>This method gets called from the scheduler with a frequency equal to the current heart rate.</summary>
         /// <remarks>
-        /// This method gets called from the scheduler with a frequency equal to the current heart rate.
+        /// It performs damage recovery, indicated by slowing the heartbeat.
         /// </remarks>
         public int Hslow()
 		{
             throw new NotImplementedException();
-   //         PLRBLK.P_ATDAM -= (PLRBLK.P_ATDAM >> 6);
+			//PLRBLK.P_ATDAM -= (PLRBLK.P_ATDAM >> 6);
 			//if ((PLRBLK.P_ATDAM & 0x8000) != 0)
 			//	PLRBLK.P_ATDAM = 0;
 			//Hupdat();
@@ -259,27 +268,23 @@ namespace DoD
 			//scheduler.TCBLND[(int)Scheduler.AnonymousEnum2.TidHrtslow].next_time = scheduler.curTime + (HEARTR * 17);
 
 			//return 0;
-        }
+		}
 
         /// <summary>This method is called every five seconds.  It will manage the lit torch's timers.</summary>
         /// <remarks>
-        /// The full burn time is stored in XX0 in 5-second units,
-        /// so 15 minutes equals 180 5-second units.
+        /// The full burn time is stored in XX0 in 5-second units, so 15 minutes equals 180 5-second units.
         /// <para />
-        /// The magical light values and physical light values are
-        /// stored in minutes.  Hence the conversion half way through.
+        /// The magical light values and physical light values are stored in minutes.  Hence the conversion half way thorugh.
         /// <para />
-        /// This is a hack to give the main timer more granularity,
-        /// so that it doesn't lose a whole minute on each level change,
-        /// but I had to leave the other values as minutes because they
-        /// are used elsewhere in a complicated formula to determine
+        /// This is a hack to give the main timer more granularity, so that it doesn't lose a whole minute on each level change,
+        /// but I had to leave the other values as minutes because they are used elsewhere in a complicated formula to determine
         /// the lighting (line pixelation/fade) values for the 3D viewer.
-        /// </remarks>
+        ///</remarks>
         public int Burner()
 		{
             throw new NotImplementedException();
-   //         // Update Task's next_time
-   //         scheduler.TCBLND[(int)Scheduler.AnonymousEnum2.TidTorchburn].next_time = scheduler.curTime + scheduler.TCBLND[(int)Scheduler.AnonymousEnum2.TidTorchburn].frequency;
+			//// Update Task's next_time
+			//scheduler.TCBLND[(int)Scheduler.AnonymousEnum2.TidTorchburn].next_time = scheduler.curTime + scheduler.TCBLND[(int)Scheduler.AnonymousEnum2.TidTorchburn].frequency;
 
 			//ushort A;
 			//if (PTORCH == -1)
@@ -323,8 +328,8 @@ namespace DoD
         public void Hupdat()
 		{
             throw new NotImplementedException();
-   //         uint ticks1;
-			//SDL.SDL_Event event = new SDL.SDL_Event();
+			//uint ticks1;
+			//SDL_Event event = new SDL_Event();
 
 			//// Heartrate in source:
 			////
@@ -341,8 +346,7 @@ namespace DoD
 			//if (FAINT == 0)
 			//{
 			//	// not in a faint
-			//	if (HEARTR <= 3
-			//		|| (HEARTR & 128) != 0)
+			//	if (HEARTR <= 3 || (HEARTR & 128) != 0)
 			//	{
 			//		// do faint
 			//		FAINT = -1;
@@ -354,7 +358,7 @@ namespace DoD
 			//			--viewer.UPDATE;
 			//			viewer.draw_game();
 			//			--viewer.RLIGHT;
-			//			ticks1 = SDL.SDL_GetTicks();
+			//			ticks1 = SDL_GetTicks();
 			//			scheduler.curTime = ticks1;
 			//			do
 			//			{
@@ -363,7 +367,7 @@ namespace DoD
 			//					scheduler.CLOCK();
 			//					scheduler.EscCheck();
 			//				}
-			//				scheduler.curTime = SDL.SDL_GetTicks();
+			//				scheduler.curTime = SDL_GetTicks();
 			//			} while (scheduler.curTime < ticks1 + 750);
 			//		} while (viewer.RLIGHT != 248); // not equal to -8
 			//		--viewer.UPDATE;
@@ -373,8 +377,7 @@ namespace DoD
 			//} else
 			//{
 			//	// in a faint
-			//	if (HEARTR >= 4
-			//		&& (HEARTR & 128) == 0)
+			//	if (HEARTR >= 4 && (HEARTR & 128) == 0)
 			//	{
 			//		// do recover from faint
 			//		do
@@ -383,7 +386,7 @@ namespace DoD
 			//			viewer.draw_game();
 			//			++viewer.MLIGHT;
 			//			++viewer.RLIGHT;
-			//			ticks1 = SDL.SDL_GetTicks();
+			//			ticks1 = SDL_GetTicks();
 			//			scheduler.curTime = ticks1;
 			//			do
 			//			{
@@ -392,7 +395,7 @@ namespace DoD
 			//					scheduler.CLOCK();
 			//					scheduler.EscCheck();
 			//				}
-			//				scheduler.curTime = SDL.SDL_GetTicks();
+			//				scheduler.curTime = SDL_GetTicks();
 			//			} while (scheduler.curTime < ticks1 + 750);
 			//		} while (viewer.RLIGHT != viewer.OLIGHT);
 			//		FAINT = 0;
@@ -403,7 +406,7 @@ namespace DoD
 			//if (PLRBLK.P_ATPOW < PLRBLK.P_ATDAM)
 			//{
 			//	// Do death
-			//	while (SDL.SDL_PollEvent(event))
+			//	while (SDL_PollEvent(event))
 			//		; // clear event buffer
 			//	viewer.clearArea(viewer.TXTSTS);
 			//	viewer.clearArea(viewer.TXTPRI);
@@ -412,11 +415,11 @@ namespace DoD
 			//}
 		}
 
-		/// <summary>Used during initialization to set data for either the built-in demo or starting a live game.</summary>
-		public void SetInitialObjects(bool isDemo)
+        /// <summary>Used during initialization to set data for either the built-in demo or starting a live game.</summary>
+        public void SetInitialObjects(bool isDemo)
 		{
             throw new NotImplementedException();
-   //         int x;
+			//int x;
 			//int y;
 
 			//if (isDemo)
@@ -424,7 +427,8 @@ namespace DoD
 			//	game.IsDemo = true;
 			//	game.LEVEL = 2;
 			//	dungeon.SetLEVTABOrig(); //Make sure the original seeds aren't overwritten from pervious new game.
-			//	// demo: iron sword, pine torch, leather shield                
+			//	// demo: iron sword, pine torch, leather shield
+
 			//	x = @object.OBIRTH(CppObject.OBJ_SWORD_IRON, 0);
 			//	++@object.OCBLND[x].P_OCOWN;
 			//	@object.OCBFIL(CppObject.OBJ_SWORD_IRON, x);
@@ -502,11 +506,11 @@ namespace DoD
 			//}
 		}
 
-		/// <summary>Processes ATTACK command.</summary>
-		public void Pattk()
+        /// <summary>Processes ATTACK command.</summary>
+        public void Pattk()
 		{
             throw new NotImplementedException();
-  //          int res;
+		//	int res;
 		//	int idx;
 		//	int cidx;
 		//	int optr;
@@ -515,7 +519,7 @@ namespace DoD
 		//	Ocb Y;
 		//	byte r;
 		//	byte c;
-		//	SDL.SDL_Event event = new SDL.SDL_Event();
+		//	SDL_Event event = new SDL_Event();
 		//	uint ticks1;
 		//	uint ticks2;
 
@@ -545,21 +549,19 @@ namespace DoD
 		//	PDAM += ((PPOW * (((int) PMGO + (int) PPHO) / 8)) >> 7);
 
 		//	// make sound for appropriate object
-		//	SDL_mixer.Mix_PlayChannel(@object.objChannel, @object.objSound[U.obj_type], 0);
-		//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+		//	Mix_PlayChannel(@object.objChannel, @object.objSound[U.obj_type], 0);
+		//	while (Mix_Playing(@object.objChannel) == 1)
 		//	{
 		//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 		//		{
 		//			scheduler.CLOCK();
-		//			if (game.AUTFLG
-		//				&& game.demoRestart == false)
+		//			if (game.AUTFLG && game.demoRestart == false)
 		//				return;
 		//		}
-		//		scheduler.curTime = SDL.SDL_GetTicks();
+		//		scheduler.curTime = SDL_GetTicks();
 		//	}
 
-		//	if (U.obj_id >= CppObject.OBJ_RING_ENERGY
-		//		&& U.obj_id <= CppObject.OBJ_RING_FIRE)
+		//	if (U.obj_id >= CppObject.OBJ_RING_ENERGY && U.obj_id <= CppObject.OBJ_RING_FIRE)
 		//	{
 		//		if (((g_cheats & (int)AnonymousEnum9.CheatRing) == 0)
 		//		{
@@ -587,8 +589,7 @@ namespace DoD
 		//		return;
 		//	}
 
-		//	if (PTORCH == -1
-		//		|| @object.OCBLND[PTORCH].obj_id == CppObject.OBJ_TORCH_DEAD)
+		//	if (PTORCH == -1 || @object.OCBLND[PTORCH].obj_id == CppObject.OBJ_TORCH_DEAD)
 		//	{
 		//		if ((rng.RANDOM() & 3) != 0)
 		//		{
@@ -598,17 +599,16 @@ namespace DoD
 		//	}
 
 		//	// make KLINK sound
-		//	SDL_mixer.Mix_PlayChannel(@object.objChannel, klink, 0);
-		//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+		//	Mix_PlayChannel(@object.objChannel, klink, 0);
+		//	while (Mix_Playing(@object.objChannel) == 1)
 		//	{
 		//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 		//		{
 		//			scheduler.CLOCK();
-		//			if (game.AUTFLG
-		//				&& game.demoRestart == false)
+		//			if (game.AUTFLG && game.demoRestart == false)
 		//				return;
 		//		}
-		//		scheduler.curTime = SDL.SDL_GetTicks();
+		//		scheduler.curTime = SDL_GetTicks();
 		//	}
 
 		//	viewer.OUTSTI(viewer.exps);
@@ -632,20 +632,19 @@ namespace DoD
 
 		//	--creature.CMXLND[creature.CMXPTR + creature.CCBLND[cidx].creature_id];
 		//	creature.CCBLND[cidx].P_CCUSE = 0;
-		//	viewer..Pupdat();
+		//	viewer.PUPDAT();
 
 		//	// do loud explosion sound
-		//	SDL_mixer.Mix_PlayChannel(@object.objChannel, bang, 0);
-		//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+		//	Mix_PlayChannel(@object.objChannel, bang, 0);
+		//	while (Mix_Playing(@object.objChannel) == 1)
 		//	{
 		//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 		//		{
 		//			scheduler.CLOCK();
-		//			if (game.AUTFLG
-		//				&& game.demoRestart == false)
+		//			if (game.AUTFLG && game.demoRestart == false)
 		//				return;
 		//		}
-		//		scheduler.curTime = SDL.SDL_GetTicks();
+		//		scheduler.curTime = SDL_GetTicks();
 		//	}
 
 		//	PPOW += (creature.CCBLND[cidx].P_CCPOW >> 3);
@@ -660,12 +659,12 @@ namespace DoD
 		//		// do fade in with message
 
 		//		// Pause so player can see scroll
-		//		ticks1 = SDL.SDL_GetTicks();
+		//		ticks1 = SDL_GetTicks();
 		//		do
-		//			ticks2 = SDL.SDL_GetTicks();
+		//			ticks2 = SDL_GetTicks();
 		//		while (ticks2 < ticks1 + wizDelay);
 
-		//		while (SDL.SDL_PollEvent(event))
+		//		while (SDL_PollEvent(event))
 		//			; // clear event buffer
 		//		viewer.clearArea(viewer.TXTSTS);
 		//		viewer.clearArea(viewer.TXTPRI);
@@ -678,8 +677,8 @@ namespace DoD
 		//		viewer.VYSCALf = 128.0f;
 		///*
 		//		// Start buzz
-		//		SDL_mixer.Mix_Volume(viewer.fadChannel, 0);
-		//		SDL_mixer.Mix_PlayChannel(viewer.fadChannel, creature.buzz, -1);
+		//		Mix_Volume(viewer.fadChannel, 0);
+		//		Mix_PlayChannel(viewer.fadChannel, creature.buzz, -1);
 		
 		//		while (!viewer.done)
 		//		{
@@ -688,7 +687,7 @@ namespace DoD
 		//		}
 		
 		//		// Stop buzz
-		//		SDL_mixer.Mix_HaltChannel(viewer.fadChannel);
+		//		Mix_HaltChannel(viewer.fadChannel);
 		//*/
 		//		viewer.ShowFade(Viewer.AnonymousEnum.FadeMiddle);
 
@@ -735,11 +734,11 @@ namespace DoD
 		//	return;
 		}
 
-		/// <summary>Processes CLIMB command.</summary>
-		public void Pclimb()
+        /// <summary>Processes CLIMB command.</summary>
+        public void Pclimb()
 		{
             throw new NotImplementedException();
-   //         uint ticks1;
+			//uint ticks1;
 
 			//byte vres;
 			//int res;
@@ -765,20 +764,19 @@ namespace DoD
 			//	if (A == (int)Parser.AnonymousEnum3.DirUp)
 			//	{
 			//		// Climb Up
-			//		if (vres == (int)Dungeon.AnonymousEnum5.VfLadderUp // can only clumb up pits after you win
-			//			|| ((vres == (int)Dungeon.AnonymousEnum5.VfHoleUp) && creature.FRZFLG))
-			//	{
+			//		if (vres == (int)Dungeon.AnonymousEnum5.VfLadderUp || ((vres == (int)Dungeon.AnonymousEnum5.VfHoleUp) && creature.FRZFLG)) // can only clumb up pits after you win
+			//		{
 			//			viewer.displayPrepare();
 			//			temp = viewer.display_mode;
 			//			viewer.display_mode = Viewer.AnonymousEnum.ModeTitle;
 			//			viewer.draw_game();
-			//			ticks1 = SDL.SDL_GetTicks();
+			//			ticks1 = SDL_GetTicks();
 			//			scheduler.curTime = ticks1;
 			//			do
 			//			{
 			//				if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//					scheduler.CLOCK();
-			//				scheduler.curTime = SDL.SDL_GetTicks();
+			//				scheduler.curTime = SDL_GetTicks();
 			//			} while (scheduler.curTime < ticks1 + viewer.prepPause);
 			//			viewer.display_mode = temp;
 			//			--game.LEVEL;
@@ -792,20 +790,19 @@ namespace DoD
 			//	} else if (A == (int)Parser.AnonymousEnum3.DirDown)
 			//	{
 			//		// Climb Down
-			//		if (vres == (int)Dungeon.AnonymousEnum5.VfLadderDown
-			//			|| vres == (int)Dungeon.AnonymousEnum5.VfHoleDown)
+			//		if (vres == (int)Dungeon.AnonymousEnum5.VfLadderDown || vres == (int)Dungeon.AnonymousEnum5.VfHoleDown)
 			//		{
 			//			viewer.displayPrepare();
 			//			temp = viewer.display_mode;
 			//			viewer.display_mode = Viewer.AnonymousEnum.ModeTitle;
 			//			viewer.draw_game();
-			//			ticks1 = SDL.SDL_GetTicks();
+			//			ticks1 = SDL_GetTicks();
 			//			scheduler.curTime = ticks1;
 			//			do
 			//			{
 			//				if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//					scheduler.CLOCK();
-			//				scheduler.curTime = SDL.SDL_GetTicks();
+			//				scheduler.curTime = SDL_GetTicks();
 			//			} while (scheduler.curTime < ticks1 + viewer.prepPause);
 			//			viewer.display_mode = temp;
 			//			++game.LEVEL;
@@ -824,23 +821,21 @@ namespace DoD
 			//}
 		}
 
-		/// <summary>Processes DROP command.</summary>
-		public void Pdrop()
+        /// <summary>Processes DROP command.</summary>
+        public void Pdrop()
 		{
             throw new NotImplementedException();
-   //         int res;
+			//int res;
 			//int idx;
 			//res = parser.PARHND();
 			//if (res == -1)
 			//	return;
-			//if (res == 0
-			//	&& PLHAND == -1)
+			//if (res == 0 && PLHAND == -1)
 			//{
 			//	parser.CMDERR();
 			//	return;
 			//}
-			//if (res == 1
-			//	&& PRHAND == -1)
+			//if (res == 1 && PRHAND == -1)
 			//{
 			//	parser.CMDERR();
 			//	return;
@@ -865,34 +860,32 @@ namespace DoD
 			//Hupdat();
 
 			//viewer.STATUS();
-			//viewer..Pupdat();
+			//viewer.PUPDAT();
 		}
 
-		/// <summary>Processes EXAMINE command.</summary>
-		public void Pexam()
+        /// <summary>Processes EXAMINE command.</summary>
+        public void Pexam()
 		{
             throw new NotImplementedException();
-            //viewer.display_mode = Viewer.AnonymousEnum.ModeExamine;
-			//viewer..Pupdat();
+			//viewer.display_mode = Viewer.AnonymousEnum.ModeExamine;
+			//viewer.PUPDAT();
 		}
 
-		/// <summary>Processes GET command.</summary>
-		public void Pget()
+        /// <summary>Processes GET command.</summary>
+        public void Pget()
 		{
             throw new NotImplementedException();
-   //         int res;
+			//int res;
 			//int idx;
 			//res = parser.PARHND();
 			//if (res == -1)
 			//	return;
-			//if (res == 0
-			//	&& PLHAND != -1)
+			//if (res == 0 && PLHAND != -1)
 			//{
 			//	parser.CMDERR();
 			//	return;
 			//}
-			//if (res == 1
-			//	&& PRHAND != -1)
+			//if (res == 1 && PRHAND != -1)
 			//{
 			//	parser.CMDERR();
 			//	return;
@@ -931,18 +924,18 @@ namespace DoD
 			//Hupdat();
 
 			//viewer.STATUS();
-			//viewer..Pupdat();
+			//viewer.PUPDAT();
 		}
 
-		/// <summary>Processes INCANT command.</summary>
-		public void Pincan()
+        /// <summary>Processes INCANT command.</summary>
+        public void Pincan()
 		{
             throw new NotImplementedException();
-   //         int res;
+			//int res;
 			//byte A;
 			//byte B;
 			//RowCol rc = new RowCol();
-			//SDL.SDL_Event event = new SDL.SDL_Event();
+			//SDL_Event event = new SDL_Event();
 			//uint ticks1;
 			//uint ticks2;
 
@@ -958,7 +951,7 @@ namespace DoD
 
 			//if (PLHAND != -1)
 			//{
-			//	if (@object.OCBLND[PLHAND].obj_type == CppObject.ObjectKind.ObjtRing)
+			//	if (@object.OCBLND[PLHAND].obj_type == CppObject.OBJT_RING)
 			//	{
 			//		if (@object.OCBLND[PLHAND].P_OCXX1 == @object.OBJTYP)
 			//		{
@@ -966,27 +959,27 @@ namespace DoD
 			//			@object.OCBFIL(@object.OBJTYP, PLHAND);
 
 			//			// make ring sound
-			//			SDL_mixer.Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[PLHAND].obj_type], 0);
-			//			while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+			//			Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[PLHAND].obj_type], 0);
+			//			while (Mix_Playing(@object.objChannel) == 1)
 			//			{
 			//				if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//					scheduler.CLOCK();
-			//				scheduler.curTime = SDL.SDL_GetTicks();
+			//				scheduler.curTime = SDL_GetTicks();
 			//			}
 
 			//			viewer.STATUS();
-			//			viewer..Pupdat();
+			//			viewer.PUPDAT();
 			//			@object.OCBLND[PLHAND].P_OCXX1 = -1;
 			//			if (@object.OBJTYP == 0x12)
 			//			{
 			//				// winner
-			//				while (SDL.SDL_PollEvent(event))
+			//				while (SDL_PollEvent(event))
 			//					; // clear event buffer
 
 			//				// Pause so player can see status line
-			//				ticks1 = SDL.SDL_GetTicks();
+			//				ticks1 = SDL_GetTicks();
 			//				do
-			//					ticks2 = SDL.SDL_GetTicks();
+			//					ticks2 = SDL_GetTicks();
 			//				while (ticks2 < ticks1 + wizDelay);
 
 			//				viewer.clearArea(viewer.TXTSTS);
@@ -1003,7 +996,7 @@ namespace DoD
 
 			//if (PRHAND != -1)
 			//{
-			//	if (@object.OCBLND[PRHAND].obj_type == CppObject.ObjectKind.ObjtRing)
+			//	if (@object.OCBLND[PRHAND].obj_type == CppObject.OBJT_RING)
 			//	{
 			//		if (@object.OCBLND[PRHAND].P_OCXX1 == @object.OBJTYP)
 			//		{
@@ -1011,27 +1004,27 @@ namespace DoD
 			//			@object.OCBFIL(@object.OBJTYP, PRHAND);
 
 			//			// make ring sound
-			//			SDL_mixer.Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[PRHAND].obj_type], 0);
-			//			while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+			//			Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[PRHAND].obj_type], 0);
+			//			while (Mix_Playing(@object.objChannel) == 1)
 			//			{
 			//				if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//					scheduler.CLOCK();
-			//				scheduler.curTime = SDL.SDL_GetTicks();
+			//				scheduler.curTime = SDL_GetTicks();
 			//			}
 
 			//			viewer.STATUS();
-			//			viewer..Pupdat();
+			//			viewer.PUPDAT();
 			//			@object.OCBLND[PRHAND].P_OCXX1 = -1;
 			//			if (@object.OBJTYP == 0x12)
 			//			{
 			//				// Do winner
-			//				while (SDL.SDL_PollEvent(event))
+			//				while (SDL_PollEvent(event))
 			//					; // clear event buffer
 
 			//				// Pause so player can see status line
-			//				ticks1 = SDL.SDL_GetTicks();
+			//				ticks1 = SDL_GetTicks();
 			//				do
-			//					ticks2 = SDL.SDL_GetTicks();
+			//					ticks2 = SDL_GetTicks();
 			//				while (ticks2 < ticks1 + wizDelay);
 
 			//				viewer.clearArea(viewer.TXTSTS);
@@ -1047,19 +1040,19 @@ namespace DoD
 			//}
 		}
 
-		/// <summary>Processes LOOK command.</summary>
-		public void Plook()
+        /// <summary>Processes LOOK command.</summary>
+        public void Plook()
 		{
             throw new NotImplementedException();
-            //viewer.display_mode = Viewer.AnonymousEnum.Mode_3d;
-			//viewer..Pupdat();
+			//viewer.display_mode = Viewer.AnonymousEnum.Mode_3d;
+			//viewer.PUPDAT();
 		}
 
 		/// <summary>Processes MOVE command.</summary>
 		public void Pmove()
 		{
             throw new NotImplementedException();
-   //         int res;
+			//int res;
 			//byte A;
 			//byte B;
 			//uint ticks1;
@@ -1073,19 +1066,18 @@ namespace DoD
 			//{
 			//	// Move Forward
 			//	--viewer.HLFSTP;
-			//	viewer..Pupdat();
-			//	ticks1 = SDL.SDL_GetTicks();
+			//	viewer.PUPDAT();
+			//	ticks1 = SDL_GetTicks();
 			//	scheduler.curTime = ticks1;
 			//	do
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//		{
 			//			scheduler.CLOCK();
-			//			if (game.AUTFLG
-			//				&& game.demoRestart == false)
+			//			if (game.AUTFLG && game.demoRestart == false)
 			//				return;
 			//		}
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	} while (scheduler.curTime < ticks1 + (moveDelay / 2));
 			//	viewer.HLFSTP = 0;
 			//	Pstep(0);
@@ -1093,38 +1085,36 @@ namespace DoD
 			//	Hupdat();
 			//	--viewer.UPDATE;
 			//	viewer.draw_game();
-			//	ticks1 = SDL.SDL_GetTicks();
+			//	ticks1 = SDL_GetTicks();
 			//	scheduler.curTime = ticks1;
 			//	do
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//		{
 			//			scheduler.CLOCK();
-			//			if (game.AUTFLG
-			//				&& game.demoRestart == false)
+			//			if (game.AUTFLG && game.demoRestart == false)
 			//				return;
 			//		}
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	} while (scheduler.curTime < ticks1 + (moveDelay / 2));
 			//	return;
 			//} else if (A == (int)Parser.AnonymousEnum3.DirBack)
 			//{
 			//	// Move Back
 			//	--viewer.BAKSTP;
-			//	viewer..Pupdat();
-			//	ticks1 = SDL.SDL_GetTicks();
+			//	viewer.PUPDAT();
+			//	ticks1 = SDL_GetTicks();
 			//	scheduler.curTime = ticks1;
 			//	do
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//		{
 			//			scheduler.CLOCK();
-			//			if (game.AUTFLG
-			//				&& game.demoRestart == false)
+			//			if (game.AUTFLG && game.demoRestart == false)
 			//				return;
 
 			//		}
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	} while (scheduler.curTime < ticks1 + (moveDelay / 2));
 			//	viewer.BAKSTP = 0;
 			//	Pstep(2);
@@ -1132,18 +1122,17 @@ namespace DoD
 			//	Hupdat();
 			//	--viewer.UPDATE;
 			//	viewer.draw_game();
-			//	ticks1 = SDL.SDL_GetTicks();
+			//	ticks1 = SDL_GetTicks();
 			//	scheduler.curTime = ticks1;
 			//	do
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//		{
 			//			scheduler.CLOCK();
-			//			if (game.AUTFLG
-			//				&& game.demoRestart == false)
+			//			if (game.AUTFLG && game.demoRestart == false)
 			//				return;
 			//		}
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	} while (scheduler.curTime < ticks1 + (moveDelay / 2));
 			//	return;
 			//} else if (A == (int)Parser.AnonymousEnum3.DirRight)
@@ -1179,11 +1168,11 @@ namespace DoD
 			//}
 		}
 
-		/// <summary>Processes PULL command.</summary>
-		public void Ppull()
+        /// <summary>Processes PULL command.</summary>
+        public void Ppull()
 		{
             throw new NotImplementedException();
-   //         if (BAGPTR == -1)
+			//if (BAGPTR == -1)
 			//{
 			//	parser.CMDERR();
 			//	return;
@@ -1193,14 +1182,12 @@ namespace DoD
 			//res = parser.PARHND();
 			//if (res == -1)
 			//	return;
-			//if (res == 0
-			//	&& PLHAND != -1)
+			//if (res == 0 && PLHAND != -1)
 			//{
 			//	parser.CMDERR();
 			//	return;
 			//}
-			//if (res == 1
-			//	&& PRHAND != -1)
+			//if (res == 1 && PRHAND != -1)
 			//{
 			//	parser.CMDERR();
 			//	return;
@@ -1257,32 +1244,29 @@ namespace DoD
 			//	PTORCH = -1;
 
 			//viewer.STATUS();
-			//viewer..Pupdat();
+			//viewer.PUPDAT();
 		}
 
-		/// <summary>Processes REVEAL command.</summary>
-		public void Prevea()
+        /// <summary>Processes REVEAL command.</summary>
+        public void Prevea()
 		{
             throw new NotImplementedException();
-   //         int res;
+			//int res;
 			//int idx;
 			//int req;
 			//res = parser.PARHND();
 			//if (res == -1)
 			//	return;
-			//if (res == 0
-			//	&& PLHAND == -1)
+			//if (res == 0 && PLHAND == -1)
 			//	return;
-			//if (res == 1
-			//	&& PRHAND == -1)
+			//if (res == 1 && PRHAND == -1)
 			//	return;
 			//if (res == 0)
 			//	idx = PLHAND;
 			//else
 			//	idx = PRHAND;
 			//req = @object.OCBLND[idx].obj_reveal_lvl;
-			//if (req != 0
-			//	&& ((req * 25 <= PPOW) || (g_cheats & (int)AnonymousEnum9.CheatReveal) || (req == 50 && game.VisionScroll && 400 <= PPOW)))
+			//if (req != 0 && ((req * 25 <= PPOW) || (g_cheats & (int)AnonymousEnum9.CheatReveal) || (req == 50 && game.VisionScroll && 400 <= PPOW)))
 			//{
 			//	@object.OCBFIL(@object.OCBLND[idx].obj_id, idx);
 			//	@object.OCBLND[idx].obj_reveal_lvl = 0;
@@ -1290,22 +1274,20 @@ namespace DoD
 			//}
 		}
 
-		/// <summary>Processes STOW command.</summary>
-		public void Pstow()
+        /// <summary>Processes STOW command.</summary>
+        public void Pstow()
 		{
             throw new NotImplementedException();
-   //         int res;
+			//int res;
 			//res = parser.PARHND();
 			//if (res == -1)
 			//	return;
-			//if (res == 0
-			//	&& PLHAND == -1)
+			//if (res == 0 && PLHAND == -1)
 			//{
 			//	parser.CMDERR();
 			//	return;
 			//}
-			//if (res == 1
-			//	&& PRHAND == -1)
+			//if (res == 1 && PRHAND == -1)
 			//{
 			//	parser.CMDERR();
 			//	return;
@@ -1323,14 +1305,14 @@ namespace DoD
 			//	PRHAND = -1;
 			//}
 			//viewer.STATUS();
-			//viewer..Pupdat();
+			//viewer.PUPDAT();
 		}
 
-		/// <summary>Processes TURN command.</summary>
-		public void Pturn()
+        /// <summary>Processes TURN command.</summary>
+        public void Pturn()
 		{
             throw new NotImplementedException();
-   //         int res;
+			//int res;
 			//byte A;
 			//byte B;
 
@@ -1377,27 +1359,25 @@ namespace DoD
 			//}
 		}
 
-		/// <summary>Processes USE command.</summary>
-		public void Puse()
+        /// <summary>Processes USE command.</summary>
+        public void Puse()
 		{
             throw new NotImplementedException();
-   //         int res;
+			//int res;
 			//int idx;
 			//res = parser.PARHND();
 			//if (res == -1)
 			//	return;
-			//if (res == 0
-			//	&& PLHAND == -1)
+			//if (res == 0 && PLHAND == -1)
 			//	return;
-			//if (res == 1
-			//	&& PRHAND == -1)
+			//if (res == 1 && PRHAND == -1)
 			//	return;
 			//if (res == 0)
 			//	idx = PLHAND;
 			//else
 			//	idx = PRHAND;
 
-			//if (@object.OCBLND[idx].obj_type == CppObject.ObjectKind.ObjtTorch)
+			//if (@object.OCBLND[idx].obj_type == CppObject.OBJT_TORCH)
 			//{
 			//	PTORCH = idx;
 			//	if (res == 0)
@@ -1412,18 +1392,18 @@ namespace DoD
 			//		PRHAND = -1;
 			//	}
 			//	viewer.STATUS();
-			//	viewer..Pupdat();
+			//	viewer.PUPDAT();
 
 			//	// make torch sound
-			//	SDL_mixer.Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
-			//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+			//	Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
+			//	while (Mix_Playing(@object.objChannel) == 1)
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//			scheduler.CLOCK();
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	}
 
-			//	viewer..Pupdat();
+			//	viewer.PUPDAT();
 			//	return;
 			//} else if (@object.OCBLND[idx].obj_id == CppObject.OBJ_FLASK_THEWS)
 			//{
@@ -1432,12 +1412,12 @@ namespace DoD
 			//	@object.OCBLND[idx].obj_reveal_lvl = 0;
 
 			//	// make flask sound
-			//	SDL_mixer.Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
-			//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+			//	Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
+			//	while (Mix_Playing(@object.objChannel) == 1)
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//			scheduler.CLOCK();
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	}
 
 			//	viewer.STATUS();
@@ -1449,12 +1429,12 @@ namespace DoD
 			//	@object.OCBLND[idx].obj_reveal_lvl = 0;
 
 			//	// make flask sound
-			//	SDL_mixer.Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
-			//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+			//	Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
+			//	while (Mix_Playing(@object.objChannel) == 1)
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//			scheduler.CLOCK();
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	}
 
 			//	viewer.STATUS();
@@ -1468,12 +1448,12 @@ namespace DoD
 			//	@object.OCBLND[idx].obj_reveal_lvl = 0;
 
 			//	// make flask sound
-			//	SDL_mixer.Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
-			//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+			//	Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
+			//	while (Mix_Playing(@object.objChannel) == 1)
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//			scheduler.CLOCK();
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	}
 
 			//	viewer.STATUS();
@@ -1485,17 +1465,17 @@ namespace DoD
 			//		return;
 
 			//	// make scroll sound
-			//	SDL_mixer.Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
-			//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+			//	Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
+			//	while (Mix_Playing(@object.objChannel) == 1)
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//			scheduler.CLOCK();
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	}
 
 			//	HEARTF = 0;
 			//	viewer.display_mode = Viewer.AnonymousEnum.ModeMap;
-			//	viewer..Pupdat();
+			//	viewer.PUPDAT();
 			//	return;
 			//} else if (@object.OCBLND[idx].obj_id == CppObject.OBJ_SCROLL_VISION)
 			//{
@@ -1504,100 +1484,103 @@ namespace DoD
 			//		return;
 
 			//	// make scroll sound
-			//	SDL_mixer.Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
-			//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+			//	Mix_PlayChannel(@object.objChannel, @object.objSound[@object.OCBLND[idx].obj_type], 0);
+			//	while (Mix_Playing(@object.objChannel) == 1)
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//			scheduler.CLOCK();
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	}
 
 			//	HEARTF = 0;
 			//	viewer.display_mode = Viewer.AnonymousEnum.ModeMap;
-			//	viewer..Pupdat();
+			//	viewer.PUPDAT();
 			//	return;
 			//}
 		}
 
-		/// <summary>Processes ZLOAD command.</summary>
-		public void Pzload()
+        /// <summary>Processes ZLOAD command.</summary>
+        public void Pzload()
 		{
             throw new NotImplementedException();
- //           int tctr = 0;
-	//		int preLen;
-	////C++ TO C# CONVERTER TODO TASK: The memory management function 'memset' has no equivalent in C#:
-	//		memset(parser.TOKEN, -1, 33);
-	////C++ TO C# CONVERTER TODO TASK: The memory management function 'memset' has no equivalent in C#:
-	//		memset(oslink.gamefile,0,oslink.gamefileLen);
-	//		oslink.gamefile = oslink.savedDir;
-	//		oslink.gamefile += oslink.pathSep;
-	//		preLen = oslink.gamefile.Length;
-	//		if (parser.GETTOK())
-	//		{
-	//			oslink.gamefile = oslink.savedDir;
-	//			oslink.gamefile += oslink.pathSep;
-	//			tctr = 0;
-	//			while (parser.TOKEN[tctr] != 0xFF)
-	//			{
-	//				oslink.gamefile[tctr + preLen] = parser.TOKEN[tctr] + 'A' - 1;
-	//				++tctr;
-	//			}
-	//			oslink.gamefile += ".dod";
-	//		} else
-	//		{
-	//			oslink.gamefile += "game.dod";
-	//		}
+			//int tctr = 0;
+			//int preLen;
 
-	//		if ((oslink.fptr = fopen(oslink.gamefile,"r")) == null)
-	//		{
-	//			parser.CMDERR();
-	//			return;
-	//		} else
-	//		{
-	//			fclose(oslink.fptr);
-	//			--scheduler.ZFLAG;
-	//			return;
-	//		}
+	  //      //C++ TO C# CONVERTER TODO TASK: The memory management function 'memset' has no equivalent in C#:
+			//memset(parser.TOKEN, -1, 33);
+	  //      //C++ TO C# CONVERTER TODO TASK: The memory management function 'memset' has no equivalent in C#:
+			//memset(oslink.gamefile,0,oslink.gamefileLen);
+			//oslink.gamefile = oslink.savedDir;
+			//oslink.gamefile += oslink.pathSep;
+			//preLen = oslink.gamefile.Length;
+			//if (parser.GETTOK())
+			//{
+			//	oslink.gamefile = oslink.savedDir;
+			//	oslink.gamefile += oslink.pathSep;
+			//	tctr = 0;
+			//	while (parser.TOKEN[tctr] != 0xFF)
+			//	{
+			//		oslink.gamefile[tctr + preLen] = parser.TOKEN[tctr] + 'A' - 1;
+			//		++tctr;
+			//	}
+			//	oslink.gamefile += ".dod";
+			//} else
+			//{
+			//	oslink.gamefile += "game.dod";
+			//}
+
+			//if ((oslink.fptr = fopen(oslink.gamefile,"r")) == null)
+			//{
+			//	parser.CMDERR();
+			//	return;
+			//} else
+			//{
+			//	fclose(oslink.fptr);
+			//	--scheduler.ZFLAG;
+			//	return;
+			//}
 		}
 
-		/// <summary>Processes ZSAVE command.</summary>
-		public void Pzsave()
+        /// <summary>Processes ZSAVE command.</summary>
+        public void Pzsave()
 		{
             throw new NotImplementedException();
- //           int tctr = 0;
-	//		int preLen;
-	////C++ TO C# CONVERTER TODO TASK: The memory management function 'memset' has no equivalent in C#:
-	//		memset(parser.TOKEN, -1, 33);
-	////C++ TO C# CONVERTER TODO TASK: The memory management function 'memset' has no equivalent in C#:
-	//		memset(oslink.gamefile,0,oslink.gamefileLen);
-	//		oslink.gamefile = oslink.savedDir;
-	//		oslink.gamefile += oslink.pathSep;
-	//		preLen = oslink.gamefile.Length;
-	//		if (parser.GETTOK())
-	//		{
-	//			while (parser.TOKEN[tctr] != 0xFF)
-	//			{
-	//				oslink.gamefile[tctr + preLen] = parser.TOKEN[tctr] + 'A' - 1;
-	//				++tctr;
-	//			}
-	//			oslink.gamefile += ".dod";
-	//		} else
-	//		{
-	//			oslink.gamefile += "game.dod";
-	//		}
+			//int tctr = 0;
+			//int preLen;
+	        
+   //         //C++ TO C# CONVERTER TODO TASK: The memory management function 'memset' has no equivalent in C#:
+			//memset(parser.TOKEN, -1, 33);
+	            
+   //         //C++ TO C# CONVERTER TODO TASK: The memory management function 'memset' has no equivalent in C#:
+			//memset(oslink.gamefile,0,oslink.gamefileLen);
+			//oslink.gamefile = oslink.savedDir;
+			//oslink.gamefile += oslink.pathSep;
+			//preLen = oslink.gamefile.Length;
+			//if (parser.GETTOK())
+			//{
+			//	while (parser.TOKEN[tctr] != 0xFF)
+			//	{
+			//		oslink.gamefile[tctr + preLen] = parser.TOKEN[tctr] + 'A' - 1;
+			//		++tctr;
+			//	}
+			//	oslink.gamefile += ".dod";
+			//} else
+			//{
+			//	oslink.gamefile += "game.dod";
+			//}
 
-	//		++scheduler.ZFLAG;
-	//		return;
+			//++scheduler.ZFLAG;
+			//return;
 		}
 
-		/// <summary>Attempts to move player in given direction.</summary>
-		public bool Pstep(byte dir)
+        /// <summary>Attempts to move player in given direction.</summary>
+        public bool Pstep(byte dir)
 		{
             throw new NotImplementedException();
-   //         byte B;
+			//byte B;
 			//B = dir + PDIR;
 			//B &= 3;
-			//if (dungeon.Stepok(PROW, PCOL, B))
+			//if (dungeon.STEPOK(PROW, PCOL, B))
 			//{
 			//	PROW += dungeon.STPTAB[B * 2];
 			//	PCOL += dungeon.STPTAB[(B * 2) + 1];
@@ -1605,23 +1588,23 @@ namespace DoD
 			//} else
 			//{
 			//	// do thud sound
-			//	SDL_mixer.Mix_PlayChannel(@object.objChannel, thud, 0);
-			//	while (SDL_mixer.Mix_Playing(@object.objChannel) == 1)
+			//	Mix_PlayChannel(@object.objChannel, thud, 0);
+			//	while (Mix_Playing(@object.objChannel) == 1)
 			//	{
 			//		if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//			scheduler.CLOCK();
-			//		scheduler.curTime = SDL.SDL_GetTicks();
+			//		scheduler.curTime = SDL_GetTicks();
 			//	}
 
 			//	return false;
 			//}
 		}
 
-		/// <summary>Determines if an attack strikes its target.</summary>
-		public bool Attack(int AP, int DP, int DD)
+        /// <summary>Determines if an attack strikes its target.</summary>
+        public bool Attack(int AP, int DP, int DD)
 		{
             throw new NotImplementedException();
-   //         int pidx;
+			//int pidx;
 			//int adjust;
 			//int ret;
 			//int T0 = 15;
@@ -1649,12 +1632,12 @@ namespace DoD
 			//	return true;
 		}
 
-		/// <summary>Calculates and assesses damage from a successful attack.</summary>
-	//C++ TO C# CONVERTER TODO TASK: Pointer arithmetic is detected on the parameter (ushort*) 'DD', so pointers on this parameter are left unchanged:
-		public bool Damage(int AP, int AMO, int APO, int DP, int DMD, int DPD, ushort[] DD)
+        /// <summary>Calculates and assesses damage from a successful attack.</summary>
+        //C++ TO C# CONVERTER TODO TASK: Pointer arithmetic is detected on the parameter 'ushort* DD', so pointers on this parameter are left unchanged:
+        public bool Damage(int AP, int AMO, int APO, int DP, int DMD, int DPD, ushort[] DD)
 		{
             throw new NotImplementedException();
-   //         int a;
+			//int a;
 
 			//a = ((AP * AMO) >> 7);
 			//a = ((a * DMD) >> 7);
@@ -1673,7 +1656,7 @@ namespace DoD
 		public void Reset()
 		{
             throw new NotImplementedException();
-   //         PROW = 12;
+			//PROW = 12;
 			//PCOL = 22;
 			//PPOW = ((0x17 << 8) | 160);
 			//POBJWT = 35;
@@ -1684,7 +1667,7 @@ namespace DoD
 			//PRHAND = -1;
 			//PTORCH = -1;
 			//BAGPTR = -1;
-			//EMPHND.obj_type = CppObject.ObjectKind.ObjtWeapon;
+			//EMPHND.obj_type = CppObject.OBJT_WEAPON;
 			//EMPHND.obj_reveal_lvl = 0;
 			//EMPHND.P_OCMGO = 0;
 			//EMPHND.P_OCPHO = 5;
@@ -1696,21 +1679,21 @@ namespace DoD
 			//HEARTS = 0;
 			//HBEATF = 0;
 			//turning = false;
-		}
-		
+		}		
+
 		public void LoadSounds()
 		{
             throw new NotImplementedException();
-            //klink = Utils.LoadSound("12_klink.wav");
+			//klink = Utils.LoadSound("12_klink.wav");
 			//thud = Utils.LoadSound("14_thud.wav");
 			//bang = Utils.LoadSound("15_bang.wav");
 		}
 
-		/// <summary>Turning Animation.</summary>
-		public void ShowTurn(byte A)
+        /// <summary>Turning Animation.</summary>
+        public void ShowTurn(byte A)
 		{
             throw new NotImplementedException();
-   //         int ctr;
+			//int ctr;
 			//int times;
 			//int x;
 			//int offset;
@@ -1755,15 +1738,14 @@ namespace DoD
 			//{
 			//	for (x = 0; x < lines; ++x)
 			//	{
-			//		ticks1 = SDL.SDL_GetTicks();
+			//		ticks1 = SDL_GetTicks();
 			//		do
 			//		{
-			//			scheduler.curTime = SDL.SDL_GetTicks();
+			//			scheduler.curTime = SDL_GetTicks();
 			//			if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//			{
 			//				scheduler.CLOCK();
-			//				if (game.AUTFLG
-			//					&& game.demoRestart == false)
+			//				if (game.AUTFLG && game.demoRestart == false)
 			//				{
 			//					turning = false;
 			//					return;
@@ -1782,7 +1764,7 @@ namespace DoD
 			//				viewer.drawArea(viewer.TXTPRI);
 
 			//				//SDL 2.0 Replaced
-			//				//SDL.SDL_GL_SwapBuffers();
+			//				//SDL_GL_SwapBuffers();
 			//				oslink.SwapBuffers();
 			//				redraw = false;
 			//			}
@@ -1793,56 +1775,57 @@ namespace DoD
 			//--HEARTF;
 		}
 
-		// TODO: Make properties
-		public byte PROW;
-		public byte PCOL;
-		public ushort POBJWT;
-		public Atb PLRBLK = new Atb();
+		public byte PROW {get; set;}
+		public byte PCOL {get; set;}
+		public ushort POBJWT {get; set;}
+		public Atb PLRBLK {get; set;} = new Atb();
 
-	//C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
-	//ORIGINAL LINE: ushort& PPOW;
-		public ushort PPOW;
-	//C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
-	//ORIGINAL LINE: byte& PMGO;
-		public byte PMGO;
-	//C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
-	//ORIGINAL LINE: byte& PMGD;
-		public byte PMGD;
-	//C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
-	//ORIGINAL LINE: byte& PPHO;
-		public byte PPHO;
-	//C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
-	//ORIGINAL LINE: byte& PPHD;
-		public byte PPHD;
-		public int PLHAND;
-		public int PRHAND;
-	//C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
-	//ORIGINAL LINE: ushort& PDAM;
-		public ushort PDAM;
-		public byte PDIR;
-		public int PTORCH;
-		public byte PRLITE;
-		public byte PMLITE;
-		public byte FAINT;
-		public int BAGPTR;
-		public byte HEARTF;
-		public byte HEARTC;
-		public byte HEARTR;
-		public byte HEARTS;
-		public byte HBEATF;
-		public Ocb EMPHND = new Ocb();
+        //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
+	    //ORIGINAL LINE: ushort& PPOW;
+		public ushort PPOW {get; set;}
 
-		public int turnDelay;
-		public int moveDelay;
-		public int wizDelay;
-		public bool turning;
+	    //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
+	    //ORIGINAL LINE: byte& PMGO;
+		public byte PMGO {get; set;}
 
-		public SDL_mixer.Mix_Chunk klink;
-		public SDL_mixer.Mix_Chunk thud;
-		public SDL_mixer.Mix_Chunk bang;
+	    //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
+	    //ORIGINAL LINE: byte& PMGD;
+		public byte PMGD {get; set;}
 
-        #region Private Members
+	    //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
+	    //ORIGINAL LINE: byte& PPHO;
+		public byte PPHO {get; set;}
 
-        #endregion
+	    //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
+	    //ORIGINAL LINE: byte& PPHD;
+		public byte PPHD {get; set;}
+		public int PLHAND {get; set;}
+		public int PRHAND {get; set;}
+
+	    //C++ TO C# CONVERTER TODO TASK: C# does not have an equivalent to references to value types:
+	    //ORIGINAL LINE: ushort& PDAM;
+		public ushort PDAM {get; set;}
+		public byte PDIR {get; set;}
+		public int PTORCH {get; set;}
+		public byte PRLITE {get; set;}
+		public byte PMLITE {get; set;}
+		public byte FAINT {get; set;}
+		public int BAGPTR {get; set;}
+		public byte HEARTF {get; set;}
+		public byte HEARTC {get; set;}
+		public byte HEARTR {get; set;}
+		public byte HEARTS {get; set;}
+		public byte HBEATF {get; set;}
+		public Ocb EMPHND {get; set;} = new Ocb();
+
+        public int turnDelay {get; set;}
+		public int moveDelay {get; set;}
+		public int wizDelay {get; set;}
+		public bool turning {get; set;}
+
+		public Mix_Chunk klink {get; set;}
+		public Mix_Chunk thud {get; set;}
+		public Mix_Chunk bang {get; set;}
+
 	}
 }

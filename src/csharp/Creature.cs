@@ -1,4 +1,11 @@
-﻿/****************************************
+﻿/*
+ * Copyright © Michael Taylor (P3Net)
+ * All Rights Reserved
+ * For changes from C++ to C# and .NET.
+ *
+ * http://www.michaeltaylorp3.net
+ */
+/****************************************
 Daggorath PC-Port Version 0.2.1
 Richard Hunerlach
 November 13, 2002
@@ -10,14 +17,14 @@ is held by Douglas J. Morgan.
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using DoD.Blocks;
-using SDL2;
+using DoD.Graphics;
+using DoD.Sound;
 
 namespace DoD
 {
-    /// <summary>This class manages the creature data and movement.</summary>    
-    public partial class Creature
+    /// <summary>This class manages the creature data and movement.</summary>
+	public class Creature
 	{
         #region Construction
 
@@ -41,12 +48,12 @@ namespace DoD
 			//int idx;
 			//int tmp;
 
-			//CMXPTR = game.LEVEL * Ctypes;
+			//CMXPTR = game.LEVEL * AnonymousEnum2.Ctypes;
 			//dungeon.CalcVFI();
 			//for (tmp = 0; tmp < 32; ++tmp)
 			//	CCBLND[tmp].Clear();
-			//scheduler.Systcb();
-			//dungeon.Dgngen();
+			//scheduler.SYSTCB();
+			//dungeon.DGNGEN();
 			//u = CMXPTR;
 			//a = (int)AnonymousEnum2.Ctypes - 1;
 			//do
@@ -67,7 +74,7 @@ namespace DoD
 			//@object.OFINDF = 0;
 			//do
 			//{
-			//	idx = @object.Fndobj();
+			//	idx = @object.FNDOBJ();
 			//	if (idx == -1)
 			//		break;
 			//	if (@object.OCBLND[idx].P_OCOWN == 0xFF)
@@ -88,8 +95,8 @@ namespace DoD
 			//	}
 			//} while (true);
 
-   //         // Determine video invert Setting
-   //         viewer.SetVidInv(game.LEVEL % 2);
+			//// Determine video invert Setting
+			//viewer.setVidInv((game.LEVEL % 2) ?true: false);
 		}
 
         /// <summary>This method is called from the scheduler once every five minutes.</summary>
@@ -100,7 +107,7 @@ namespace DoD
 		{
             throw new NotImplementedException();
 			//// Update Task's next_time
-			//scheduler.TCBLND[(int)TaskIds.TidCrtregen].next_time = scheduler.curTime + scheduler.TCBLND[(int)TaskIds.TidCrtregen].frequency;
+			//scheduler.TCBLND[(int)Scheduler.AnonymousEnum5.TidCrtregen].next_time = scheduler.curTime + scheduler.TCBLND[(int)Scheduler.AnonymousEnum5.TidCrtregen].frequency;
 
 			//int X = CMXPTR;
 			//byte B = (int)AnonymousEnum2.Ctypes - 1;
@@ -112,8 +119,8 @@ namespace DoD
 			//} while (B != 255);
 			//if (A < 32)
 			//{
-			//	A = rng.Random();
-			//	if ((g_cheats & (int)CheatCodes.CHEATREGENSCALING) != 0)
+			//	A = rng.RANDOM();
+			//	if ((g_cheats & (int)AnonymousEnum8.CheatRegenScaling) != 0)
 			//	{
 			//		switch (game.LEVEL)
 			//		{
@@ -145,13 +152,13 @@ namespace DoD
 			//	++CMXLND[X + A];
 			//}
 			//return 0;
-        }
+		}
 
         /// <summary>This method is called from the scheduler to move the creatures.</summary>
         /// <remarks>
         /// This is where most of the creature logic resides.  It's frequency is determined by the creature
         /// type, and its location relative to the player.
-        ///</remarks>
+        /// </remarks>
         public int Cmove(int task, int cidx)
 		{
             throw new NotImplementedException();
@@ -176,22 +183,19 @@ namespace DoD
 			//		return 0;
 
 			//	// pick up object
-			//	if (CCBLND[cidx].creature_id != (int)CreatureKind.CrtScorpion
-			//		&& CCBLND[cidx].creature_id < CreatureKind.CrtWizimg
-			//		&& !(game.CreaturesIgnoreObjects && CCBLND[cidx].P_CCROW == player.PROW && CCBLND[cidx].P_CCCOL == player.PCOL))
+			//	if (CCBLND[cidx].creature_id != (int)AnonymousEnum.CrtScorpion && CCBLND[cidx].creature_id < AnonymousEnum.CrtWizimg && !(game.CreaturesIgnoreObjects && CCBLND[cidx].P_CCROW == player.PROW && CCBLND[cidx].P_CCCOL == player.PCOL))
 			//	{
 			//		@object.OFINDF = 0;
-			//		oidx = @object.Ofind(new RowCol(CCBLND[cidx].P_CCROW, CCBLND[cidx].P_CCCOL));
+			//		oidx = @object.OFIND(new RowCol(CCBLND[cidx].P_CCROW, CCBLND[cidx].P_CCCOL));
 			//		if (oidx != -1)
 			//		{
 			//			@object.OCBLND[oidx].P_OCPTR = CCBLND[cidx].P_CCOBJ;
 			//			CCBLND[cidx].P_CCOBJ = oidx;
 			//			--@object.OCBLND[oidx].P_OCOWN;
-			//			viewer..Pupdat();
-			//			if (CCBLND[cidx].P_CCROW == player.PROW
-			//				&& CCBLND[cidx].P_CCCOL == player.PCOL)
+			//			viewer.PUPDAT();
+			//			if (CCBLND[cidx].P_CCROW == player.PROW && CCBLND[cidx].P_CCCOL == player.PCOL)
 			//			{
-			//				viewer..Pupdat();
+			//				viewer.PUPDAT();
 			//				viewer.NEWLUK = 0;
 			//				scheduler.TCBLND[task].next_time = scheduler.curTime + CCBLND[cidx].P_CCTAT;
 			//				return 0;
@@ -204,29 +208,26 @@ namespace DoD
 			//	}
 
 			//	// attack player
-			//	if (CCBLND[cidx].P_CCROW == player.PROW
-			//		&& CCBLND[cidx].P_CCCOL == player.PCOL)
+			//	if (CCBLND[cidx].P_CCROW == player.PROW && CCBLND[cidx].P_CCCOL == player.PCOL)
 			//	{
 			//		// do creature sound
-			//		SDL_mixer.Mix_PlayChannel(creChannel, creSound[CCBLND[cidx].creature_id], 0);
-			//		while (SDL_mixer.Mix_Playing(creChannel) == 1)
+			//		Mix_PlayChannel(creChannel, creSound[CCBLND[cidx].creature_id], 0);
+			//		while (Mix_Playing(creChannel) == 1)
 			//		{
 			//			if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//			{
 			//				scheduler.CLOCK();
-			//				if (game.AUTFLG
-			//					&& game.demoRestart == false)
+			//				if (game.AUTFLG && game.demoRestart == false)
 			//					return 0;
 			//			}
-			//			scheduler.curTime = SDL.SDL_GetTicks();
+			//			scheduler.curTime = SDL_GetTicks();
 			//		}
 
 			//		// set player shielding parameters
 			//		shA = 0x80;
 			//		shB = 0x80;
 
-			//		if (player.PLHAND != -1
-			//			&& @object.OCBLND[player.PLHAND].obj_type == ObjectKind.ObjtShield)
+			//		if (player.PLHAND != -1 && @object.OCBLND[player.PLHAND].obj_type == CppObject.OBJT_SHIELD)
 			//		{
 			//			shD = (((int)shA << 8) | shB);
 			//			shD2 = (((int)@object.OCBLND[player.PLHAND].P_OCXX0 << 8) | @object.OCBLND[player.PLHAND].P_OCXX1);
@@ -237,8 +238,7 @@ namespace DoD
 			//			}
 			//		}
 
-			//		if (player.PRHAND != -1
-			//			&& @object.OCBLND[player.PRHAND].obj_type == ObjectKind.ObjtShield)
+			//		if (player.PRHAND != -1 && @object.OCBLND[player.PRHAND].obj_type == CppObject.OBJT_SHIELD)
 			//		{
 			//			shD = (((int)shA << 8) | shB);
 			//			shD2 = (((int)@object.OCBLND[player.PRHAND].P_OCXX0 << 8) | @object.OCBLND[player.PRHAND].P_OCXX1);
@@ -254,29 +254,28 @@ namespace DoD
 
 			//		// process attack
 
-			//		if (((g_cheats & (int)CheatCodes.CHEATINVULNERABLE) == 0)
+			//		if (((g_cheats & (int)AnonymousEnum8.CheatInvulnerable) == 0)
 			//		{
 			//			if (player.ATTACK(CCBLND[cidx].P_CCPOW, player.PPOW, player.PDAM))
 			//			{
 			//				// make CLANK sound
-			//				SDL_mixer.Mix_PlayChannel(creChannel, clank, 0);
-			//				while (SDL_mixer.Mix_Playing(creChannel) == 1)
+			//				Mix_PlayChannel(creChannel, clank, 0);
+			//				while (Mix_Playing(creChannel) == 1)
 			//				{
 			//					if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
 			//					{
-			//						scheduler.Clock();
-			//						if (game.AUTFLG
-			//							&& game.demoRestart == false)
+			//						scheduler.CLOCK();
+			//						if (game.AUTFLG && game.demoRestart == false)
 			//							return 0;
 			//					}
-			//					scheduler.curTime = SDL.SDL_GetTicks();
+			//					scheduler.curTime = SDL_GetTicks();
 			//				}
 
 			//				player.DAMAGE(CCBLND[cidx].P_CCPOW, CCBLND[cidx].P_CCMGO, CCBLND[cidx].P_CCPHO, player.PPOW, player.PMGD, player.PPHD, player.PDAM);
 			//			}
 			//		}
 
-			//		player.Hupdat();
+			//		player.HUPDAT();
 			//		scheduler.TCBLND[task].next_time = scheduler.curTime + CCBLND[cidx].P_CCTMV;
 			//		return 0;
 			//	}
@@ -292,7 +291,7 @@ namespace DoD
 			//		c = CCBLND[cidx].P_CCCOL;
 			//		do
 			//		{
-			//			if (!dungeon.Stepok(r, c, dir))
+			//			if (!dungeon.STEPOK(r, c, dir))
 			//			{
 			//				doRandom = true;
 			//				break;
@@ -304,10 +303,9 @@ namespace DoD
 			//		{
 			//			CCBLND[cidx].P_CCDIR = dir;
 			//			Cwalk(0, CCBLND[cidx]);
-			//			if (CCBLND[cidx].P_CCROW == player.PROW
-			//				&& CCBLND[cidx].P_CCCOL == player.PCOL)
+			//			if (CCBLND[cidx].P_CCROW == player.PROW && CCBLND[cidx].P_CCCOL == player.PCOL)
 			//			{
-			//				viewer..Pupdat();
+			//				viewer.PUPDAT();
 			//				viewer.NEWLUK = 0;
 			//				scheduler.TCBLND[task].next_time = scheduler.curTime + CCBLND[cidx].P_CCTAT;
 			//				return 0;
@@ -330,7 +328,7 @@ namespace DoD
 			//		c = CCBLND[cidx].P_CCCOL;
 			//		do
 			//		{
-			//			if (!dungeon.Stepok(r, c, dir))
+			//			if (!dungeon.STEPOK(r, c, dir))
 			//			{
 			//				doRandom = true;
 			//				break;
@@ -342,10 +340,9 @@ namespace DoD
 			//		{
 			//			CCBLND[cidx].P_CCDIR = dir;
 			//			Cwalk(0, CCBLND[cidx]);
-			//			if (CCBLND[cidx].P_CCROW == player.PROW
-			//				&& CCBLND[cidx].P_CCCOL == player.PCOL)
+			//			if (CCBLND[cidx].P_CCROW == player.PROW && CCBLND[cidx].P_CCCOL == player.PCOL)
 			//			{
-			//				viewer.Pupdat();
+			//				viewer.PUPDAT();
 			//				viewer.NEWLUK = 0;
 			//				scheduler.TCBLND[task].next_time = scheduler.curTime + CCBLND[cidx].P_CCTAT;
 			//				return 0;
@@ -358,11 +355,10 @@ namespace DoD
 			//	}
 
 			//	// player not seen so make random move
-			//	if (doRandom
-			//		|| (CCBLND[cidx].P_CCROW != player.PROW && CCBLND[cidx].P_CCCOL != player.PCOL))
+			//	if (doRandom || (CCBLND[cidx].P_CCROW != player.PROW && CCBLND[cidx].P_CCCOL != player.PCOL))
 			//	{
 			//		X = 0;
-			//		rnd = rng.Random();
+			//		rnd = rng.RANDOM();
 			//		if ((rnd & 128) == 0)
 			//			X += 3;
 			//		rnd &= 3;
@@ -374,10 +370,9 @@ namespace DoD
 			//			d = MOVTAB[X++];
 			//			if (Cwalk(d, CCBLND[cidx]))
 			//			{
-			//				if (CCBLND[cidx].P_CCROW == player.PROW
-			//					&& CCBLND[cidx].P_CCCOL == player.PCOL)
+			//				if (CCBLND[cidx].P_CCROW == player.PROW && CCBLND[cidx].P_CCCOL == player.PCOL)
 			//				{
-			//					viewer.Pupdat();
+			//					viewer.PUPDAT();
 			//					viewer.NEWLUK = 0;
 			//					scheduler.TCBLND[task].next_time = scheduler.curTime + CCBLND[cidx].P_CCTAT;
 			//					return 0;
@@ -393,10 +388,9 @@ namespace DoD
 			//	}
 			//}
 
-			//if (CCBLND[cidx].P_CCROW == player.PROW
-			//	&& CCBLND[cidx].P_CCCOL == player.PCOL)
+			//if (CCBLND[cidx].P_CCROW == player.PROW && CCBLND[cidx].P_CCCOL == player.PCOL)
 			//{
-			//	viewer.Pupdat();
+			//	viewer.PUPDAT();
 			//	viewer.NEWLUK = 0;
 			//	scheduler.TCBLND[task].next_time = scheduler.curTime + CCBLND[cidx].P_CCTAT;
 			//	return 0;
@@ -425,7 +419,7 @@ namespace DoD
 
 			//r = cr.P_CCROW;
 			//c = cr.P_CCCOL;
-			//if (dungeon.Stepok(r, c, DIR))
+			//if (dungeon.STEPOK(r, c, DIR))
 			//{
 			//	r += dungeon.STPTAB[DIR * 2];
 			//	c += dungeon.STPTAB[(DIR * 2) + 1];
@@ -471,11 +465,11 @@ namespace DoD
 			//		return true;
 			//	}
 
-			//	small = (rng.Random() & 1);
+			//	small = (rng.RANDOM() & 1);
 			//	if (small == 1)
 			//	{
 			//		// make sound
-			//		if ((g_options & (int)AnonymousEnum4..Pupdat() != 0)
+			//		if ((g_options & (int)AnonymousEnum7.OptStereo) != 0)
 			//		{
 			//			// get x / y position of sound relative to player location
 			//			int xpos = cr.P_CCROW - player.PROW;
@@ -533,16 +527,16 @@ namespace DoD
 			//				panl = 255;
 
 			//			// pan the sound effect before playing it
-			//			SDL_mixer.Mix_SetPanning(creChannelv, panl, panr);
+			//			Mix_SetPanning(creChannelv, panl, panr);
 			//		}
 
-			//		SDL_mixer.Mix_Volume(creChannelv, (SDL_mixer.MIX_MAX_VOLUME / 8) * (9 - big));
-			//		SDL_mixer.Mix_PlayChannel(creChannelv, creSound[cr.creature_id], 0);
-			//		while (SDL_mixer.Mix_Playing(creChannelv) == 1)
+			//		Mix_Volume(creChannelv, (MIX_MAX_VOLUME / 8) * (9 - big));
+			//		Mix_PlayChannel(creChannelv, creSound[cr.creature_id], 0);
+			//		while (Mix_Playing(creChannelv) == 1)
 			//		{
 			//			if (scheduler.curTime >= scheduler.TCBLND[0].next_time)
-			//				scheduler.Clock();
-			//			scheduler.curTime = SDL.SDL_GetTicks();
+			//				scheduler.CLOCK();
+			//			scheduler.curTime = SDL_GetTicks();
 			//		}
 			//	}
 
@@ -559,16 +553,15 @@ namespace DoD
 
         /// <summary>These two routines should probably be combined.</summary>
         /// <remarks>
-        /// They check for a creature in the given cell.
+        /// They check for a creature in the given cell
         /// </remarks>
         public bool Cfind(byte rw, byte cl)
 		{
             throw new NotImplementedException();
-   //         var ctr = 0;
+   //         int ctr = 0;
 			//while (ctr < 32)
 			//{
-			//	if (CCBLND[ctr].P_CCROW == rw
-			//		&& CCBLND[ctr].P_CCCOL == cl)
+			//	if (CCBLND[ctr].P_CCROW == rw && CCBLND[ctr].P_CCCOL == cl)
 			//	{
 			//		if (CCBLND[ctr].P_CCUSE != 0)
 			//			return false;
@@ -578,19 +571,17 @@ namespace DoD
 			//return true;
 		}
 
-        //TODO: Combine
         /// <summary>These two routines should probably be combined.</summary>
         /// <remarks>
-        /// They check for a creature in the given cell.
+        /// They check for a creature in the given cell
         /// </remarks>
         public int Cfind2(RowCol rc)
 		{
             throw new NotImplementedException();
-   //         var ctr = 0;
+   //         int ctr = 0;
 			//while (ctr < 32)
 			//{
-			//	if (CCBLND[ctr].P_CCROW == rc.row
-			//		&& CCBLND[ctr].P_CCCOL == rc.col)
+			//	if (CCBLND[ctr].P_CCROW == rc.row && CCBLND[ctr].P_CCCOL == rc.col)
 			//	{
 			//		if (CCBLND[ctr].P_CCUSE != 0)
 			//			return ctr;
@@ -600,7 +591,6 @@ namespace DoD
 			//return -1;
 		}
 
-        /// <summary>Resets the object.</summary>
 		public void Reset()
 		{
             throw new NotImplementedException();
@@ -631,10 +621,9 @@ namespace DoD
 			//Utils.LoadFromDecDigit(MOVTAB, "0310130");
 		}
 
-        /// <summary>Load sounds.</summary>
 		public void LoadSounds()
 		{
-            throw new NotImplementedException();
+            throw new NotImplementedException();            
    //         creSound[0] = Utils.LoadSound("00_squeak.wav");
 			//creSound[1] = Utils.LoadSound("01_rattle.wav");
 			//creSound[2] = Utils.LoadSound("02_growl.wav");
@@ -661,20 +650,36 @@ namespace DoD
 			//	CDBTAB[ccc].P_CDTAT = ((int)((float)CDBTAB[ccc].P_CDTAT * (float)creSpeedMul / 100.0));
 			//}
 		}
-        
-		//TODO: Public Data Fields make properties
-		public Ccb[] CCBLND = Arrays.InitializeWithDefaultInstances<Ccb>(32);
-		public byte FRZFLG;
-		public int CMXPTR;
-		public byte[] CMXLND = new byte[60];
-		public byte[] MOVTAB = new byte[7];
-		public SDL_mixer.Mix_Chunk[] creSound = Arrays.InitializeWithDefaultInstances<SDL_mixer.Mix_Chunk>(12);
-		public SDL_mixer.Mix_Chunk clank;
-		public SDL_mixer.Mix_Chunk kaboom;
-		public SDL_mixer.Mix_Chunk buzz;
-		public int creChannel;
-		public int creChannelv;
-		public int creSpeedMul;
+        		
+		public Ccb[] CCBLND {get; set;} = Arrays.InitializeWithDefaultInstances<Ccb>(32);
+		public byte FRZFLG {get; set;}
+		public int CMXPTR {get; set;}
+		public byte[] CMXLND {get; set;} = new byte[60];
+		public byte[] MOVTAB {get; set;} = new byte[7];
+		public Mix_Chunk[] creSound {get; set;} = Arrays.InitializeWithDefaultInstances<Mix_Chunk>(12);
+		public Mix_Chunk clank {get; set;}
+		public Mix_Chunk kaboom {get; set;}
+		public Mix_Chunk buzz {get; set;}
+		public int creChannel {get; set;}
+		public int creChannelv {get; set;}
+		public int creSpeedMul {get; set;}
+
+        //TODO: Rename to CreatureIDs
+		public enum AnonymousEnum
+		{ // creature ID#s
+			CrtSpider = 0,
+			CrtViper = 1,
+			CrtGiant1 = 2,
+			CrtBlob = 3,
+			CrtKnight1 = 4,
+			CrtGiant2 = 5,
+			CrtScorpion = 6,
+			CrtKnight2 = 7,
+			CrtWraith = 8,
+			CrtGaldrog = 9,
+			CrtWizimg = 10,
+			CrtWizard = 11,
+		}
 
         #region Private Members
 
@@ -728,9 +733,7 @@ namespace DoD
 
 		private Cdb[] CDBTAB = Arrays.InitializeWithDefaultInstances<Cdb>(12);
 
-        private const int Ctypes = 12;
-        
-		[Obsolete("Use Ctypes constant")]
+        //TODO: Rename
 		private enum AnonymousEnum2
 		{
 			Ctypes = 12,
